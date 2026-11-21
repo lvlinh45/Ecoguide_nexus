@@ -1,5 +1,11 @@
 import { DEFAULT_NEXUS_CONFIG } from "@/data/nexusDefaults";
-import type { NexusClubProject, NexusPortalConfig } from "@/types/nexus";
+import type {
+  NexusClubProject,
+  NexusPortalConfig,
+  NexusReviewsResponse,
+  NexusServiceRequestPayload,
+  NexusTrackedRequest,
+} from "@/types/nexus";
 import { sanitizeSafeUrl } from "@/utils/safeUrl";
 
 declare global {
@@ -128,5 +134,99 @@ export function formatDisplayDomain(url: string): string {
     return parsed.hostname + (parsed.pathname !== "/" ? parsed.pathname : "");
   } catch {
     return url.replace(/^https?:\/\//i, "");
+  }
+}
+
+export async function submitNexusServiceRequest(
+  payload: NexusServiceRequestPayload,
+): Promise<NexusTrackedRequest> {
+  const apiBase = getApiBaseUrl();
+  if (!apiBase) {
+    throw new Error("Chưa cấu hình VITE_API_URL để gửi yêu cầu tới máy chủ NEXUS.");
+  }
+
+  const res = await fetch(`${apiBase}/nexus-requests`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json", Accept: "application/json" },
+    body: JSON.stringify(payload),
+  });
+  const json = await res.json();
+  if (!res.ok || !json?.success) {
+    throw new Error(json?.message || "Gửi yêu cầu dịch vụ thất bại.");
+  }
+  return json.data as NexusTrackedRequest;
+}
+
+export async function trackNexusServiceRequest(
+  code: string,
+  contact: string,
+): Promise<NexusTrackedRequest> {
+  const apiBase = getApiBaseUrl();
+  if (!apiBase) {
+    throw new Error("Chưa cấu hình VITE_API_URL để tra cứu yêu cầu.");
+  }
+
+  const params = new URLSearchParams({
+    code: code.trim(),
+    contact: contact.trim(),
+  });
+  const res = await fetch(`${apiBase}/nexus-requests/track?${params.toString()}`, {
+    headers: { Accept: "application/json" },
+  });
+  const json = await res.json();
+  if (!res.ok || !json?.success) {
+    throw new Error(json?.message || "Không tìm thấy yêu cầu phù hợp.");
+  }
+  return json.data as NexusTrackedRequest;
+}
+
+export async function submitNexusReview(payload: {
+  code: string;
+  contact: string;
+  rating: number;
+  comment: string;
+  clubModule?: string;
+  highlights?: string[];
+}): Promise<NexusTrackedRequest> {
+  const apiBase = getApiBaseUrl();
+  if (!apiBase) {
+    throw new Error("Chưa cấu hình VITE_API_URL để gửi đánh giá.");
+  }
+
+  const res = await fetch(`${apiBase}/nexus-requests/review`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json", Accept: "application/json" },
+    body: JSON.stringify(payload),
+  });
+  const json = await res.json();
+  if (!res.ok || !json?.success) {
+    throw new Error(json?.message || "Không thể gửi đánh giá.");
+  }
+  return json.data as NexusTrackedRequest;
+}
+
+export async function fetchPublicNexusReviews(
+  clubModule?: string,
+): Promise<NexusReviewsResponse> {
+  const apiBase = getApiBaseUrl();
+  if (!apiBase) {
+    return { reviews: [], statsByClub: {} };
+  }
+
+  const qs =
+    clubModule && clubModule !== "all"
+      ? `?clubModule=${encodeURIComponent(clubModule)}`
+      : "";
+  try {
+    const res = await fetch(`${apiBase}/nexus-requests/reviews${qs}`, {
+      headers: { Accept: "application/json" },
+    });
+    if (!res.ok) return { reviews: [], statsByClub: {} };
+    const json = await res.json();
+    return (
+      (json?.data as NexusReviewsResponse) || { reviews: [], statsByClub: {} }
+    );
+  } catch {
+    return { reviews: [], statsByClub: {} };
   }
 }

@@ -22,9 +22,14 @@ import type { NexusClubProject } from "@/types/nexus";
 interface ClubProjectCardProps {
   project: NexusClubProject;
   onInspect: (project: NexusClubProject) => void;
+  onOrderClub: (project: NexusClubProject) => void;
 }
 
-export function ClubProjectCard({ project, onInspect }: ClubProjectCardProps) {
+export function ClubProjectCard({
+  project,
+  onInspect,
+  onOrderClub,
+}: ClubProjectCardProps) {
   const domainLabel = formatDisplayDomain(project.url);
 
   return (
@@ -79,19 +84,29 @@ export function ClubProjectCard({ project, onInspect }: ClubProjectCardProps) {
 
       <Separator />
 
-      <CardFooter className="flex items-center justify-between gap-2.5 pt-1">
-        <Button
-          type="button"
-          variant="ghost"
-          size="sm"
-          onClick={() => onInspect(project)}
-        >
-          Hồ sơ năng lực
-        </Button>
+      <CardFooter className="flex flex-wrap items-center justify-between gap-2 pt-1">
+        <div className="flex items-center gap-1.5">
+          <Button
+            type="button"
+            variant="ghost"
+            size="sm"
+            onClick={() => onInspect(project)}
+          >
+            Hồ sơ năng lực
+          </Button>
+          <Button
+            type="button"
+            variant="outline"
+            size="sm"
+            onClick={() => onOrderClub(project)}
+          >
+            Đặt dịch vụ CLB
+          </Button>
+        </div>
 
         <Button size="sm" asChild>
           <a href={project.url} target="_blank" rel="noopener noreferrer">
-            Truy cập cổng CLB
+            Cổng CLB
             <ExternalLink className="size-3.5" />
           </a>
         </Button>

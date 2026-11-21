@@ -13,9 +13,13 @@ import type { NexusPortalConfig } from "@/types/nexus";
 
 interface FaqAndFooterSectionProps {
   config: NexusPortalConfig;
+  onOpenOrder: () => void;
 }
 
-export function FaqAndFooterSection({ config }: FaqAndFooterSectionProps) {
+export function FaqAndFooterSection({
+  config,
+  onOpenOrder,
+}: FaqAndFooterSectionProps) {
   return (
     <>
       <section id="faq" className="mx-auto max-w-4xl px-4 py-16 sm:px-6 scroll-mt-20">
@@ -56,10 +60,14 @@ export function FaqAndFooterSection({ config }: FaqAndFooterSectionProps) {
                   nòng cốt trong vòng 24 giờ làm việc.
                 </p>
               </div>
-              <Button variant="secondary" size="lg" asChild className="shrink-0">
-                <a href={config.ctaLink} target="_blank" rel="noopener noreferrer">
-                  Liên hệ hợp tác ngay
-                </a>
+              <Button
+                variant="secondary"
+                size="lg"
+                type="button"
+                onClick={onOpenOrder}
+                className="shrink-0"
+              >
+                Gửi yêu cầu hợp tác ngay
               </Button>
             </CardContent>
           </Card>

@@ -9,11 +9,13 @@ import type { NexusClubProject } from "@/types/nexus";
 interface ProjectsGridSectionProps {
   projects: NexusClubProject[];
   isLoading: boolean;
+  onOrderClub: (project: NexusClubProject) => void;
 }
 
 export function ProjectsGridSection({
   projects,
   isLoading,
+  onOrderClub,
 }: ProjectsGridSectionProps) {
   const [selectedProject, setSelectedProject] =
     useState<NexusClubProject | null>(null);
@@ -50,6 +52,7 @@ export function ProjectsGridSection({
               key={project.id}
               project={project}
               onInspect={setSelectedProject}
+              onOrderClub={onOrderClub}
             />
           ))}
         </div>
@@ -58,6 +61,7 @@ export function ProjectsGridSection({
       <ClubCapabilityDialog
         project={selectedProject}
         onClose={() => setSelectedProject(null)}
+        onOrderClub={onOrderClub}
       />
     </section>
   );
