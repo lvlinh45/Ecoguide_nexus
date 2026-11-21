@@ -17,11 +17,13 @@ import type { NexusClubProject } from "@/types/nexus";
 interface ClubCapabilityDialogProps {
   project: NexusClubProject | null;
   onClose: () => void;
+  onOrderClub: (project: NexusClubProject) => void;
 }
 
 export function ClubCapabilityDialog({
   project,
   onClose,
+  onOrderClub,
 }: ClubCapabilityDialogProps) {
   return (
     <Dialog
@@ -72,6 +74,16 @@ export function ClubCapabilityDialog({
           <DialogFooter>
             <Button variant="outline" onClick={onClose}>
               Đóng
+            </Button>
+            <Button
+              type="button"
+              variant="secondary"
+              onClick={() => {
+                onClose();
+                onOrderClub(project);
+              }}
+            >
+              Đặt dịch vụ CLB này
             </Button>
             <Button asChild>
               <a href={project.url} target="_blank" rel="noopener noreferrer">
