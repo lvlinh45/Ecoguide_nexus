@@ -6,9 +6,10 @@ import type { NexusPortalConfig } from "@/types/nexus";
 
 interface HeroSectionProps {
   config: NexusPortalConfig;
+  onOpenOrder: () => void;
 }
 
-export function HeroSection({ config }: HeroSectionProps) {
+export function HeroSection({ config, onOpenOrder }: HeroSectionProps) {
   return (
     <section id="top" className="relative overflow-hidden nexus-grid-bg">
       <div className="mx-auto max-w-6xl px-4 pt-12 pb-10 sm:px-6 sm:pt-16 sm:pb-12">
@@ -35,13 +36,13 @@ export function HeroSection({ config }: HeroSectionProps) {
 
           <div className="flex flex-wrap items-center justify-center gap-3 pt-2">
             <Button size="lg" asChild>
-              <a href="#projects">
-                Truy cập 4 Dự án CLB
+              <a href="#services">
+                Chọn nhóm dịch vụ CLB
                 <ArrowRight className="size-4" />
               </a>
             </Button>
-            <Button size="lg" variant="outline" asChild>
-              <a href="#services">Xem bảng giá & gói kết hợp</a>
+            <Button size="lg" variant="outline" type="button" onClick={onOpenOrder}>
+              Điền biểu mẫu yêu cầu ngay
             </Button>
           </div>
         </div>

@@ -18,9 +18,14 @@ const requiredUiComponents = [
   "button.tsx",
   "card.tsx",
   "dialog.tsx",
+  "input.tsx",
+  "label.tsx",
+  "select.tsx",
   "separator.tsx",
   "skeleton.tsx",
+  "table.tsx",
   "tabs.tsx",
+  "textarea.tsx",
 ];
 
 for (const file of requiredUiComponents) {
@@ -42,6 +47,9 @@ for (const relPath of [
   "src/components/sections/ProcessSection.tsx",
   "src/components/sections/ComparisonAndValuesSection.tsx",
   "src/components/sections/FaqAndFooterSection.tsx",
+  "src/components/sections/ServiceOrderDialog.tsx",
+  "src/components/sections/RequestTrackingAndReviewsSection.tsx",
+  "src/data/nexusServices.ts",
 ]) {
   assert.ok(
     fs.existsSync(path.join(nexusRoot, relPath)),

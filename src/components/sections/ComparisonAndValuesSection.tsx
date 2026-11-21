@@ -1,6 +1,14 @@
 import { Check, Minus, ShieldCheck } from "lucide-react";
 import { SectionHeading } from "@/components/shared/SectionHeading";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { COMPARISON_ROWS, STAKEHOLDER_VALUES } from "@/data/nexusDefaults";
 
@@ -22,48 +30,46 @@ export function ComparisonAndValuesSection() {
         />
 
         <Card className="overflow-hidden py-0">
-          <div className="overflow-x-auto">
-            <table className="w-full text-left text-sm">
-              <thead className="border-b bg-muted/50 text-xs uppercase text-muted-foreground">
-                <tr>
-                  <th className="px-4 py-3.5 font-semibold">Tiêu chí</th>
-                  <th className="px-4 py-3.5 font-bold text-primary">NEXUS</th>
-                  <th className="px-4 py-3.5 font-semibold">Agency</th>
-                  <th className="px-4 py-3.5 font-semibold">Freelancer</th>
-                  <th className="px-4 py-3.5 font-semibold">
-                    Liên hệ CLB trực tiếp
-                  </th>
-                </tr>
-              </thead>
-              <tbody className="divide-y">
-                {COMPARISON_ROWS.map((row) => (
-                  <tr key={row.criterion} className="hover:bg-muted/20">
-                    <td className="px-4 py-3.5 font-medium text-foreground">
-                      {row.criterion}
-                    </td>
-                    <td className="px-4 py-3.5 font-semibold text-primary">
-                      <span className="inline-flex items-center gap-1.5">
-                        <Check className="size-4 shrink-0" />
-                        {row.nexus}
-                      </span>
-                    </td>
-                    <td className="px-4 py-3.5 text-muted-foreground">
-                      {row.agency}
-                    </td>
-                    <td className="px-4 py-3.5 text-muted-foreground">
-                      {row.freelancer}
-                    </td>
-                    <td className="px-4 py-3.5 text-muted-foreground">
-                      <span className="inline-flex items-center gap-1">
-                        <Minus className="size-3.5 shrink-0 opacity-60" />
-                        {row.directClub}
-                      </span>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
+          <Table>
+            <TableHeader className="bg-muted/50 text-xs uppercase">
+              <TableRow>
+                <TableHead className="px-4 py-3.5 font-semibold">Tiêu chí</TableHead>
+                <TableHead className="px-4 py-3.5 font-bold text-primary">NEXUS</TableHead>
+                <TableHead className="px-4 py-3.5 font-semibold">Agency</TableHead>
+                <TableHead className="px-4 py-3.5 font-semibold">Freelancer</TableHead>
+                <TableHead className="px-4 py-3.5 font-semibold">
+                  Liên hệ CLB trực tiếp
+                </TableHead>
+              </TableRow>
+            </TableHeader>
+            <TableBody>
+              {COMPARISON_ROWS.map((row) => (
+                <TableRow key={row.criterion}>
+                  <TableCell className="px-4 py-3.5 font-medium text-foreground">
+                    {row.criterion}
+                  </TableCell>
+                  <TableCell className="px-4 py-3.5 font-semibold text-primary">
+                    <span className="inline-flex items-center gap-1.5">
+                      <Check className="size-4 shrink-0" />
+                      {row.nexus}
+                    </span>
+                  </TableCell>
+                  <TableCell className="px-4 py-3.5 text-muted-foreground">
+                    {row.agency}
+                  </TableCell>
+                  <TableCell className="px-4 py-3.5 text-muted-foreground">
+                    {row.freelancer}
+                  </TableCell>
+                  <TableCell className="px-4 py-3.5 text-muted-foreground">
+                    <span className="inline-flex items-center gap-1">
+                      <Minus className="size-3.5 shrink-0 opacity-60" />
+                      {row.directClub}
+                    </span>
+                  </TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
         </Card>
       </div>
 

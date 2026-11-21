@@ -4,10 +4,10 @@ import { ArrowUpRight, Sparkles } from "lucide-react";
 
 interface NavbarProps {
   brandName: string;
-  ctaLink: string;
+  onOpenOrder: () => void;
 }
 
-export function Navbar({ brandName, ctaLink }: NavbarProps) {
+export function Navbar({ brandName, onOpenOrder }: NavbarProps) {
   return (
     <header className="sticky top-0 z-40 w-full border-b bg-background/85 backdrop-blur-md">
       <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-4 sm:px-6">
@@ -35,8 +35,8 @@ export function Navbar({ brandName, ctaLink }: NavbarProps) {
           <a href="#process" className="hover:text-foreground transition-colors">
             Quy trình
           </a>
-          <a href="#compare" className="hover:text-foreground transition-colors">
-            Lợi thế NEXUS
+          <a href="#tracking-reviews" className="hover:text-foreground transition-colors">
+            Tra cứu & Đánh giá
           </a>
           <a href="#faq" className="hover:text-foreground transition-colors">
             Hỏi đáp
@@ -45,13 +45,11 @@ export function Navbar({ brandName, ctaLink }: NavbarProps) {
 
         <div className="flex items-center gap-2">
           <Button variant="ghost" size="sm" asChild className="hidden sm:inline-flex">
-            <a href="#projects">Khám phá CLB</a>
+            <a href="#services">Chọn dịch vụ</a>
           </Button>
-          <Button size="sm" asChild>
-            <a href={ctaLink} target="_blank" rel="noopener noreferrer">
-              Đặt dịch vụ
-              <ArrowUpRight className="size-3.5" />
-            </a>
+          <Button size="sm" type="button" onClick={onOpenOrder}>
+            Gửi yêu cầu dịch vụ
+            <ArrowUpRight className="size-3.5" />
           </Button>
         </div>
       </div>

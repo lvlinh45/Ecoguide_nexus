@@ -269,39 +269,39 @@ export const COMPARISON_ROWS: ComparisonRow[] = [
 export const PROCESS_STEPS: ProcessStep[] = [
   {
     step: "01",
-    title: "Tiếp nhận yêu cầu (< 24h)",
+    title: "Tìm hiểu & Chọn dịch vụ CLB",
     description:
-      "Doanh nghiệp gửi nhu cầu dịch vụ, thời gian, ngân sách dự kiến qua cổng NEXUS.",
+      "Doanh nghiệp tham khảo năng lực 4 CLB trên web và chọn đúng nhóm dịch vụ cần hỗ trợ (quay dựng video, thiết kế, âm nhạc, hướng dẫn du lịch, ngoại ngữ hoặc gói khác).",
   },
   {
     step: "02",
-    title: "Làm rõ đề bài & Tư vấn gói",
+    title: "Điền biểu mẫu yêu cầu chi tiết",
     description:
-      "Điều phối viên chuẩn hóa KPI, phạm vi công việc và đề xuất 1–3 CLB phù hợp hoặc gói kết hợp.",
+      "Cung cấp thông tin liên hệ, mô tả cụ thể công việc, số lượng/quy mô, thời gian thực hiện và ngân sách dự kiến; nhận mã yêu cầu để theo dõi.",
   },
   {
     step: "03",
-    title: "Ký hợp đồng ba bên",
+    title: "NEXUS tiếp nhận & Tư vấn kết nối",
     description:
-      "Thống nhất hợp đồng ba bên (Doanh nghiệp – NEXUS – CLB), tạm ứng và lịch nghiệm thu từng giai đoạn.",
+      "Trong vòng 24h, NEXUS trao đổi làm rõ nhu cầu với doanh nghiệp và kết nối với CLB có năng lực phù hợp nhất.",
   },
   {
     step: "04",
-    title: "CLB thực chiến cùng Cố vấn",
+    title: "Thống nhất phương án, chi phí & tiến độ",
     description:
-      "Thành viên CLB có danh sách dự phòng triển khai dưới sự giám sát chuyên môn của giảng viên cố vấn.",
+      "Doanh nghiệp – NEXUS – CLB cùng thống nhất phạm vi công việc, báo giá, lịch trình và ký xác nhận hợp đồng ba bên minh bạch.",
   },
   {
     step: "05",
-    title: "Nghiệm thu & Chỉnh sửa cam kết",
+    title: "CLB triển khai & Bàn giao kết quả",
     description:
-      "Bàn giao sản phẩm đúng chuẩn, tiếp nhận phản hồi hai chiều và hoàn thiện theo thỏa thuận.",
+      "CLB thực hiện dịch vụ dưới sự giám sát chuyên môn của giảng viên cố vấn, gửi link/biên bản bàn giao kết quả đúng hẹn.",
   },
   {
     step: "06",
-    title: "Thanh toán & Hồ sơ tín nhiệm",
+    title: "Phản hồi & Đánh giá chất lượng CLB",
     description:
-      "Giải ngân minh bạch cho CLB/sinh viên, cập nhật điểm uy tín CLB và mở rộng cơ hội tuyển dụng.",
+      "Doanh nghiệp tra cứu mã yêu cầu ngay trên web để nghiệm thu và gửi đánh giá chất lượng hợp tác về CLB đó.",
   },
 ];
 
