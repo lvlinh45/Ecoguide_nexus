@@ -20,7 +20,17 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import { Separator } from "@/components/ui/separator";
+import { Textarea } from "@/components/ui/textarea";
 import { NEXUS_SERVICE_CATALOG } from "@/data/nexusServices";
 import { submitNexusServiceRequest } from "@/services/nexusApi";
 import type { NexusServiceItem, NexusTrackedRequest } from "@/types/nexus";
@@ -298,29 +308,29 @@ export function ServiceOrderDialog({
                 </div>
               ) : (
                 <form onSubmit={handleSubmit} className="space-y-4">
-                  {/* Chọn dịch vụ */}
+                  {/* Chọn dịch vụ bằng shadcn Select */}
                   <div className="space-y-1.5">
-                    <label
-                      htmlFor="nexus-service-select"
-                      className="text-xs font-semibold text-foreground"
-                    >
+                    <Label htmlFor="nexus-service-select" className="font-semibold">
                       Nhóm dịch vụ & CLB thực hiện
-                    </label>
-                    <select
-                      id="nexus-service-select"
+                    </Label>
+                    <Select
                       value={selectedServiceId}
-                      onChange={(e) => {
-                        setSelectedServiceId(e.target.value);
+                      onValueChange={(val) => {
+                        setSelectedServiceId(val);
                         setSpecValues({});
                       }}
-                      className="w-full rounded-lg border border-input bg-background px-3 py-2 text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-primary/40"
                     >
-                      {NEXUS_SERVICE_CATALOG.map((item) => (
-                        <option key={item.id} value={item.id}>
-                          [{item.clubLabel}] {item.title}
-                        </option>
-                      ))}
-                    </select>
+                      <SelectTrigger id="nexus-service-select">
+                        <SelectValue placeholder="Chọn dịch vụ CLB..." />
+                      </SelectTrigger>
+                      <SelectContent>
+                        {NEXUS_SERVICE_CATALOG.map((item) => (
+                          <SelectItem key={item.id} value={item.id}>
+                            [{item.clubLabel}] {item.title}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
                   </div>
 
                   {/* Câu hỏi chi tiết theo từng dịch vụ */}
@@ -329,15 +339,12 @@ export function ServiceOrderDialog({
                       Chi tiết yêu cầu cho dịch vụ "{activeService.categoryLabel}"
                     </div>
                     {activeService.specFields.map((field) => (
-                      <div key={field.key} className="space-y-1">
-                        <label
-                          htmlFor={`spec-${field.key}`}
-                          className="text-xs font-medium text-foreground"
-                        >
+                      <div key={field.key} className="space-y-1.5">
+                        <Label htmlFor={`spec-${field.key}`}>
                           {field.label}
-                        </label>
+                        </Label>
                         {field.type === "textarea" ? (
-                          <textarea
+                          <Textarea
                             id={`spec-${field.key}`}
                             rows={2}
                             value={specValues[field.key] || ""}
@@ -348,10 +355,9 @@ export function ServiceOrderDialog({
                               }))
                             }
                             placeholder={field.placeholder}
-                            className="w-full rounded-lg border border-input bg-background px-3 py-2 text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-primary/40"
                           />
                         ) : (
-                          <input
+                          <Input
                             id={`spec-${field.key}`}
                             type="text"
                             value={specValues[field.key] || ""}
@@ -362,7 +368,6 @@ export function ServiceOrderDialog({
                               }))
                             }
                             placeholder={field.placeholder}
-                            className="w-full rounded-lg border border-input bg-background px-3 py-2 text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-primary/40"
                           />
                         )}
                       </div>
@@ -370,73 +375,57 @@ export function ServiceOrderDialog({
                   </div>
 
                   {/* Mô tả chung, số lượng, thời gian & ngân sách */}
-                  <div className="space-y-1">
-                    <label
-                      htmlFor="nexus-work-desc"
-                      className="text-xs font-semibold text-foreground"
-                    >
+                  <div className="space-y-1.5">
+                    <Label htmlFor="nexus-work-desc" className="font-semibold">
                       Mô tả tổng quan công việc & yêu cầu bổ sung *
-                    </label>
-                    <textarea
+                    </Label>
+                    <Textarea
                       id="nexus-work-desc"
                       required
                       rows={3}
                       value={workDescription}
                       onChange={(e) => setWorkDescription(e.target.value)}
                       placeholder="Mô tả bối cảnh sự kiện/dự án, địa điểm triển khai, yêu cầu cụ thể cần CLB lưu ý..."
-                      className="w-full rounded-lg border border-input bg-background px-3 py-2 text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-primary/40"
                     />
                   </div>
 
                   <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
-                    <div className="space-y-1">
-                      <label
-                        htmlFor="nexus-quantity"
-                        className="text-xs font-semibold text-foreground"
-                      >
+                    <div className="space-y-1.5">
+                      <Label htmlFor="nexus-quantity" className="font-semibold">
                         Số lượng / Quy mô
-                      </label>
-                      <input
+                      </Label>
+                      <Input
                         id="nexus-quantity"
                         type="text"
                         value={quantityOrScale}
                         onChange={(e) => setQuantityOrScale(e.target.value)}
                         placeholder="VD: 2 video / 80 khách"
-                        className="w-full rounded-lg border border-input bg-background px-3 py-2 text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-primary/40"
                       />
                     </div>
-                    <div className="space-y-1">
-                      <label
-                        htmlFor="nexus-timeline"
-                        className="text-xs font-semibold text-foreground"
-                      >
+                    <div className="space-y-1.5">
+                      <Label htmlFor="nexus-timeline" className="font-semibold">
                         Thời gian thực hiện *
-                      </label>
-                      <input
+                      </Label>
+                      <Input
                         id="nexus-timeline"
                         required
                         type="text"
                         value={expectedTimeline}
                         onChange={(e) => setExpectedTimeline(e.target.value)}
-                        placeholder="VD: 15/12/2026 (1 ngày)"
-                        className="w-full rounded-lg border border-input bg-background px-3 py-2 text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-primary/40"
+                        placeholder="VD: 15/12/2026"
                       />
                     </div>
-                    <div className="space-y-1">
-                      <label
-                        htmlFor="nexus-budget"
-                        className="text-xs font-semibold text-foreground"
-                      >
+                    <div className="space-y-1.5">
+                      <Label htmlFor="nexus-budget" className="font-semibold">
                         Ngân sách dự kiến *
-                      </label>
-                      <input
+                      </Label>
+                      <Input
                         id="nexus-budget"
                         required
                         type="text"
                         value={expectedBudget}
                         onChange={(e) => setExpectedBudget(e.target.value)}
-                        placeholder="VD: 3 – 5 triệu VNĐ"
-                        className="w-full rounded-lg border border-input bg-background px-3 py-2 text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-primary/40"
+                        placeholder="VD: 3 – 5 triệu"
                       />
                     </div>
                   </div>
@@ -447,72 +436,54 @@ export function ServiceOrderDialog({
                     Thông tin liên hệ Doanh nghiệp / Đối tác
                   </div>
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                    <div className="space-y-1">
-                      <label
-                        htmlFor="nexus-company"
-                        className="text-xs font-medium text-foreground"
-                      >
+                    <div className="space-y-1.5">
+                      <Label htmlFor="nexus-company">
                         Tên Doanh nghiệp / Đơn vị *
-                      </label>
-                      <input
+                      </Label>
+                      <Input
                         id="nexus-company"
                         required
                         type="text"
                         value={companyName}
                         onChange={(e) => setCompanyName(e.target.value)}
                         placeholder="VD: Công ty TNHH Du lịch Biển Xanh"
-                        className="w-full rounded-lg border border-input bg-background px-3 py-2 text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-primary/40"
                       />
                     </div>
-                    <div className="space-y-1">
-                      <label
-                        htmlFor="nexus-contact-name"
-                        className="text-xs font-medium text-foreground"
-                      >
+                    <div className="space-y-1.5">
+                      <Label htmlFor="nexus-contact-name">
                         Họ tên người liên hệ *
-                      </label>
-                      <input
+                      </Label>
+                      <Input
                         id="nexus-contact-name"
                         required
                         type="text"
                         value={contactName}
                         onChange={(e) => setContactName(e.target.value)}
                         placeholder="VD: Nguyễn Văn A"
-                        className="w-full rounded-lg border border-input bg-background px-3 py-2 text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-primary/40"
                       />
                     </div>
-                    <div className="space-y-1">
-                      <label
-                        htmlFor="nexus-phone"
-                        className="text-xs font-medium text-foreground"
-                      >
+                    <div className="space-y-1.5">
+                      <Label htmlFor="nexus-phone">
                         Số điện thoại / Zalo *
-                      </label>
-                      <input
+                      </Label>
+                      <Input
                         id="nexus-phone"
                         required
                         type="tel"
                         value={phone}
                         onChange={(e) => setPhone(e.target.value)}
                         placeholder="VD: 0905 123 456"
-                        className="w-full rounded-lg border border-input bg-background px-3 py-2 text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-primary/40"
                       />
                     </div>
-                    <div className="space-y-1">
-                      <label
-                        htmlFor="nexus-email"
-                        className="text-xs font-medium text-foreground"
-                      >
-                        Email liên hệ *
-                      </label>
-                      <input
+                    <div className="space-y-1.5">
+                      <Label htmlFor="nexus-email">Email liên hệ *</Label>
+                      <Input
                         id="nexus-email"
                         required
                         type="email"
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
                         placeholder="VD: lienhe@doanhnghiep.vn"
-                        className="w-full rounded-lg border border-input bg-background px-3 py-2 text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-primary/40"
                       />
                     </div>
                   </div>

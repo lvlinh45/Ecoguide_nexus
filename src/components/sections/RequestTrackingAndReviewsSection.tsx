@@ -18,8 +18,11 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 import { Separator } from "@/components/ui/separator";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Textarea } from "@/components/ui/textarea";
 import {
   fetchPublicNexusReviews,
   submitNexusReview,
@@ -204,38 +207,31 @@ export function RequestTrackingAndReviewsSection({
               </CardHeader>
               <CardContent>
                 <form onSubmit={handleTrack} className="space-y-3.5">
-                  <div className="space-y-1">
-                    <label
-                      htmlFor="track-code"
-                      className="text-xs font-semibold text-foreground"
-                    >
+                  <div className="space-y-1.5">
+                    <Label htmlFor="track-code" className="font-semibold">
                       Mã yêu cầu
-                    </label>
-                    <input
+                    </Label>
+                    <Input
                       id="track-code"
                       type="text"
                       required
                       value={code}
                       onChange={(e) => setCode(e.target.value)}
-                      placeholder="VD: NX-261121-A1B2"
-                      className="w-full rounded-lg border border-input bg-background px-3 py-2 font-mono text-sm uppercase focus:outline-none focus:ring-2 focus:ring-primary/40"
+                      placeholder="VD: NX-261121-A1B2C3D4"
+                      className="font-mono uppercase"
                     />
                   </div>
-                  <div className="space-y-1">
-                    <label
-                      htmlFor="track-contact"
-                      className="text-xs font-semibold text-foreground"
-                    >
+                  <div className="space-y-1.5">
+                    <Label htmlFor="track-contact" className="font-semibold">
                       Email hoặc Số điện thoại đăng ký
-                    </label>
-                    <input
+                    </Label>
+                    <Input
                       id="track-contact"
                       type="text"
                       required
                       value={contact}
                       onChange={(e) => setContact(e.target.value)}
                       placeholder="VD: lienhe@doanhnghiep.vn hoặc 0905123456"
-                      className="w-full rounded-lg border border-input bg-background px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary/40"
                     />
                   </div>
 
@@ -433,29 +429,26 @@ export function RequestTrackingAndReviewsSection({
                         {REVIEW_HIGHLIGHT_OPTIONS.map((tag) => {
                           const active = selectedHighlights.includes(tag);
                           return (
-                            <button
+                            <Button
                               key={tag}
                               type="button"
+                              size="sm"
+                              variant={active ? "default" : "outline"}
                               onClick={() => handleToggleHighlight(tag)}
-                              className={`rounded-full border px-2.5 py-1 text-[11px] font-medium cursor-pointer transition-colors ${
-                                active
-                                  ? "border-primary bg-primary/10 text-primary"
-                                  : "border-border text-muted-foreground hover:text-foreground"
-                              }`}
+                              className="h-7 rounded-full px-2.5 text-[11px]"
                             >
                               {tag}
-                            </button>
+                            </Button>
                           );
                         })}
                       </div>
 
-                      <textarea
+                      <Textarea
                         required
                         rows={2}
                         value={comment}
                         onChange={(e) => setComment(e.target.value)}
                         placeholder="Chia sẻ trải nghiệm hợp tác, chất lượng sản phẩm/dịch vụ của CLB..."
-                        className="w-full rounded-lg border border-input bg-background px-3 py-2 text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-primary/40"
                       />
 
                       {reviewError && (

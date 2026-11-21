@@ -59,18 +59,16 @@ export function ServicesSection({ onSelectService }: ServicesSectionProps) {
         {FILTER_GROUPS.map((grp) => {
           const isActive = activeFilter === grp.id;
           return (
-            <button
+            <Button
               key={grp.id}
               type="button"
+              size="sm"
+              variant={isActive ? "default" : "outline"}
               onClick={() => setActiveFilter(grp.id)}
-              className={`rounded-full border px-3.5 py-1.5 text-xs font-semibold transition-all cursor-pointer ${
-                isActive
-                  ? "border-primary bg-primary text-primary-foreground shadow-xs"
-                  : "border-border bg-card text-muted-foreground hover:text-foreground hover:border-primary/40"
-              }`}
+              className="rounded-full"
             >
               {grp.label}
-            </button>
+            </Button>
           );
         })}
       </div>

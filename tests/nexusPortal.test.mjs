@@ -18,9 +18,14 @@ const requiredUiComponents = [
   "button.tsx",
   "card.tsx",
   "dialog.tsx",
+  "input.tsx",
+  "label.tsx",
+  "select.tsx",
   "separator.tsx",
   "skeleton.tsx",
+  "table.tsx",
   "tabs.tsx",
+  "textarea.tsx",
 ];
 
 for (const file of requiredUiComponents) {
