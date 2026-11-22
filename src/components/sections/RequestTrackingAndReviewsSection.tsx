@@ -200,7 +200,7 @@ export function RequestTrackingAndReviewsSection({
 
         <TabsContent value="track" className="mt-5">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
-            <Card className="lg:col-span-5 h-fit">
+            <Card className="lg:col-span-5 h-fit min-w-0">
               <CardHeader>
                 <CardTitle className="text-base">
                   Tra cứu yêu cầu dịch vụ
@@ -266,7 +266,7 @@ export function RequestTrackingAndReviewsSection({
               </CardContent>
             </Card>
 
-            <Card className="lg:col-span-7">
+            <Card className="lg:col-span-7 min-w-0">
               {!tracked ? (
                 <CardContent className="flex flex-col items-center justify-center py-12 text-center space-y-2 text-muted-foreground">
                   <MessageSquareQuote className="size-9 opacity-45" />

@@ -54,8 +54,8 @@ export function ServicesSection({ onSelectService }: ServicesSectionProps) {
         description="Bấm vào từng dịch vụ (như Quay dựng video, Thiết kế của YTC, Biểu diễn Âm nhạc, Hướng dẫn du lịch...) để xem thông tin chi tiết và điền biểu mẫu gửi yêu cầu tới NEXUS."
       />
 
-      {/* Bộ lọc nhanh theo CLB / Nhóm dịch vụ (cuộn ngang mượt trên mobile) */}
-      <div className="flex items-center gap-2 overflow-x-auto scrollbar-none pb-2 -mx-4 px-4 sm:mx-0 sm:px-0 sm:pb-0 sm:flex-wrap mb-6 sm:mb-8">
+      {/* Bộ lọc nhanh theo CLB / Nhóm dịch vụ */}
+      <div className="flex flex-wrap items-center gap-1.5 sm:gap-2 mb-6 sm:mb-8">
         {FILTER_GROUPS.map((grp) => {
           const isActive = activeFilter === grp.id;
           return (
@@ -65,7 +65,7 @@ export function ServicesSection({ onSelectService }: ServicesSectionProps) {
               size="sm"
               variant={isActive ? "default" : "outline"}
               onClick={() => setActiveFilter(grp.id)}
-              className="rounded-full shrink-0 h-9 sm:h-8 px-3.5"
+              className="rounded-full h-8 px-3 text-xs"
             >
               {grp.label}
             </Button>
