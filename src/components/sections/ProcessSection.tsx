@@ -5,7 +5,7 @@ import { PROCESS_STEPS } from "@/data/nexusDefaults";
 
 export function ProcessSection() {
   return (
-    <section id="process" className="bg-muted/30 py-16 scroll-mt-20">
+    <section id="process" className="bg-muted/30 py-10 sm:py-16 scroll-mt-16 sm:scroll-mt-20">
       <div className="mx-auto max-w-6xl px-4 sm:px-6">
         <SectionHeading
           className="mb-10"

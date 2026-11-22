@@ -21,7 +21,7 @@ export function ProjectsGridSection({
     useState<NexusClubProject | null>(null);
 
   return (
-    <section id="projects" className="mx-auto max-w-6xl px-4 py-12 sm:px-6 sm:pb-18 scroll-mt-20">
+    <section id="projects" className="mx-auto max-w-6xl px-4 py-10 sm:py-12 sm:px-6 sm:pb-18 scroll-mt-16 sm:scroll-mt-20">
       <div className="flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between mb-6">
         <SectionHeading
           badge="Hệ sinh thái 4 CLB nòng cốt"
