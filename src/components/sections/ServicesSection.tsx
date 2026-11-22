@@ -45,17 +45,17 @@ export function ServicesSection({ onSelectService }: ServicesSectionProps) {
   return (
     <section
       id="services"
-      className="mx-auto max-w-6xl px-4 py-16 sm:px-6 scroll-mt-20"
+      className="mx-auto max-w-6xl px-4 py-10 sm:py-16 sm:px-6 scroll-mt-16 sm:scroll-mt-20"
     >
       <SectionHeading
-        className="mb-6"
+        className="mb-5 sm:mb-6"
         badge="Danh mục Dịch vụ của 4 CLB"
         title="Chọn đúng nhóm dịch vụ doanh nghiệp đang cần"
         description="Bấm vào từng dịch vụ (như Quay dựng video, Thiết kế của YTC, Biểu diễn Âm nhạc, Hướng dẫn du lịch...) để xem thông tin chi tiết và điền biểu mẫu gửi yêu cầu tới NEXUS."
       />
 
       {/* Bộ lọc nhanh theo CLB / Nhóm dịch vụ */}
-      <div className="flex flex-wrap gap-2 mb-8">
+      <div className="flex flex-wrap items-center gap-1.5 sm:gap-2 mb-6 sm:mb-8">
         {FILTER_GROUPS.map((grp) => {
           const isActive = activeFilter === grp.id;
           return (
@@ -65,7 +65,7 @@ export function ServicesSection({ onSelectService }: ServicesSectionProps) {
               size="sm"
               variant={isActive ? "default" : "outline"}
               onClick={() => setActiveFilter(grp.id)}
-              className="rounded-full"
+              className="rounded-full h-8 px-3 text-xs"
             >
               {grp.label}
             </Button>
@@ -73,7 +73,7 @@ export function ServicesSection({ onSelectService }: ServicesSectionProps) {
         })}
       </div>
 
-      <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
+      <div className="grid grid-cols-1 gap-4 sm:gap-5 md:grid-cols-2">
         {filteredServices.map((service) => (
           <Card
             key={service.id}
@@ -82,7 +82,7 @@ export function ServicesSection({ onSelectService }: ServicesSectionProps) {
           >
             <CardHeader className="pb-3">
               <div className="flex items-start justify-between gap-3">
-                <div className="flex items-center gap-3">
+                <div className="flex items-start sm:items-center gap-3 min-w-0">
                   <ClubProjectIcon
                     project={{
                       id: service.clubModule,
@@ -91,7 +91,7 @@ export function ServicesSection({ onSelectService }: ServicesSectionProps) {
                       logoUrl: service.logoUrl,
                     }}
                   />
-                  <div>
+                  <div className="min-w-0">
                     <div className="flex flex-wrap items-center gap-1.5">
                       <Badge variant="outline" className="text-[11px]">
                         {service.badge}
@@ -100,7 +100,7 @@ export function ServicesSection({ onSelectService }: ServicesSectionProps) {
                         {service.clubLabel}
                       </span>
                     </div>
-                    <CardTitle className="text-base sm:text-lg pt-1 group-hover:text-primary transition-colors">
+                    <CardTitle className="text-base sm:text-lg pt-1 group-hover:text-primary transition-colors leading-snug">
                       {service.title}
                     </CardTitle>
                   </div>
@@ -115,7 +115,7 @@ export function ServicesSection({ onSelectService }: ServicesSectionProps) {
               <FeatureChecklist items={service.deliverables.slice(0, 3)} />
               <div className="flex flex-wrap items-center justify-between gap-2 rounded-xl bg-muted/50 px-3 py-2 text-xs">
                 <span className="inline-flex items-center gap-1 text-muted-foreground">
-                  <Clock className="size-3.5 text-primary" />
+                  <Clock className="size-3.5 shrink-0 text-primary" />
                   {service.typicalDuration}
                 </span>
                 <span className="font-bold text-primary">
@@ -124,14 +124,14 @@ export function ServicesSection({ onSelectService }: ServicesSectionProps) {
               </div>
             </CardContent>
 
-            <CardFooter className="flex items-center justify-between gap-2 border-t pt-3">
-              <span className="text-xs text-muted-foreground truncate">
+            <CardFooter className="flex flex-col items-stretch sm:flex-row sm:items-center sm:justify-between gap-2.5 border-t pt-3">
+              <span className="text-xs text-muted-foreground sm:truncate">
                 Phù hợp: {service.suitableFor}
               </span>
               <Button
                 type="button"
                 size="sm"
-                className="shrink-0"
+                className="w-full sm:w-auto min-h-10 sm:min-h-8 shrink-0"
                 onClick={(e) => {
                   e.stopPropagation();
                   onSelectService(service);

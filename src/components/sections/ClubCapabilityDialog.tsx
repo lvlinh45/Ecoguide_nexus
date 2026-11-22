@@ -33,16 +33,16 @@ export function ClubCapabilityDialog({
       }}
     >
       {project && (
-        <DialogContent>
-          <DialogHeader>
-            <div className="flex items-center gap-3">
+        <DialogContent className="max-h-[90dvh] overflow-y-auto p-4 sm:p-6">
+          <DialogHeader className="pr-8">
+            <div className="flex items-start sm:items-center gap-3">
               <ClubProjectIcon project={project} size="lg" />
-              <div>
-                <div className="flex items-center gap-2 mb-1">
+              <div className="min-w-0">
+                <div className="flex flex-wrap items-center gap-1.5 mb-1">
                   <Badge variant="outline">{project.badge}</Badge>
                   <Badge variant="secondary">{project.category}</Badge>
                 </div>
-                <DialogTitle>{project.name}</DialogTitle>
+                <DialogTitle className="leading-snug">{project.name}</DialogTitle>
               </div>
             </div>
             <DialogDescription>{project.tagline}</DialogDescription>
@@ -61,9 +61,9 @@ export function ClubCapabilityDialog({
             </div>
 
             <div className="flex flex-wrap items-center justify-between gap-2 rounded-xl border px-3.5 py-2.5 text-xs">
-              <div>
+              <div className="min-w-0">
                 <span className="text-muted-foreground">Cổng truy cập: </span>
-                <span className="font-mono font-semibold text-foreground">
+                <span className="font-mono font-semibold text-foreground break-all">
                   {formatDisplayDomain(project.url)}
                 </span>
               </div>
@@ -72,12 +72,13 @@ export function ClubCapabilityDialog({
           </div>
 
           <DialogFooter>
-            <Button variant="outline" onClick={onClose}>
+            <Button variant="outline" onClick={onClose} className="min-h-10 sm:min-h-9">
               Đóng
             </Button>
             <Button
               type="button"
               variant="secondary"
+              className="min-h-10 sm:min-h-9"
               onClick={() => {
                 onClose();
                 onOrderClub(project);
@@ -85,7 +86,7 @@ export function ClubCapabilityDialog({
             >
               Đặt dịch vụ CLB này
             </Button>
-            <Button asChild>
+            <Button asChild className="min-h-10 sm:min-h-9">
               <a href={project.url} target="_blank" rel="noopener noreferrer">
                 Đi tới {project.shortName}
                 <ExternalLink className="size-4" />

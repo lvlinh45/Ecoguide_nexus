@@ -160,11 +160,11 @@ export function ServiceOrderDialog({
       }}
     >
       {service && (
-        <DialogContent className="sm:max-w-4xl max-h-[92vh] overflow-y-auto p-0">
+        <DialogContent className="sm:max-w-4xl max-h-[92dvh] overflow-y-auto p-0">
           <div className="grid grid-cols-1 lg:grid-cols-12">
             {/* Cột trái: Thông tin chi tiết dịch vụ & CLB phụ trách */}
-            <div className="lg:col-span-5 bg-muted/40 p-6 border-b lg:border-b-0 lg:border-r space-y-5">
-              <div className="flex items-start gap-3">
+            <div className="lg:col-span-5 min-w-0 bg-muted/40 p-4 sm:p-6 border-b lg:border-b-0 lg:border-r space-y-4 sm:space-y-5">
+              <div className="flex items-start gap-3 pr-8 lg:pr-0">
                 <ClubProjectIcon
                   project={{
                     id: activeService.clubModule,
@@ -174,7 +174,7 @@ export function ServiceOrderDialog({
                   }}
                   size="lg"
                 />
-                <div className="space-y-1">
+                <div className="space-y-1 min-w-0">
                   <div className="flex flex-wrap items-center gap-1.5">
                     <Badge variant="outline">{activeService.badge}</Badge>
                     <Badge variant="secondary">
@@ -194,16 +194,16 @@ export function ServiceOrderDialog({
                 {activeService.detailDescription}
               </p>
 
-              <div className="grid grid-cols-1 gap-2.5 rounded-xl border bg-background p-3.5 text-xs">
+              <div className="grid grid-cols-1 gap-2 rounded-xl border bg-background p-3 text-xs">
                 <div className="flex items-center justify-between gap-2">
                   <span className="text-muted-foreground">Chi phí tham khảo:</span>
-                  <span className="font-bold text-primary">
+                  <span className="font-bold text-primary text-right">
                     {activeService.priceRange}
                   </span>
                 </div>
                 <Separator />
                 <div className="flex items-center justify-between gap-2">
-                  <span className="text-muted-foreground inline-flex items-center gap-1">
+                  <span className="text-muted-foreground inline-flex items-center gap-1 shrink-0">
                     <Clock className="size-3.5" /> Thời gian triển khai:
                   </span>
                   <span className="font-semibold text-foreground text-right">
@@ -212,14 +212,36 @@ export function ServiceOrderDialog({
                 </div>
               </div>
 
-              <div className="space-y-2">
+              {/* Thu gọn mặc định phần chi tiết phụ trên mobile để thấy form ngay, mở sẵn trên desktop */}
+              <details className="group lg:hidden rounded-xl border bg-background/80 px-3 py-2 text-xs">
+                <summary className="cursor-pointer font-bold text-foreground list-none flex items-center justify-between gap-2 py-1">
+                  <span>Xem hạng mục bàn giao & quy trình NEXUS</span>
+                  <span className="text-primary text-[11px] shrink-0 whitespace-nowrap group-open:hidden">Mở rộng</span>
+                  <span className="text-primary text-[11px] shrink-0 whitespace-nowrap hidden group-open:inline">Thu gọn</span>
+                </summary>
+                <div className="pt-2 space-y-3 border-t mt-2">
+                  <FeatureChecklist items={activeService.deliverables} />
+                  <div className="rounded-lg border border-primary/20 bg-primary/5 p-2.5 space-y-1">
+                    <div className="font-bold text-primary flex items-center gap-1.5">
+                      <ShieldCheck className="size-4" /> Quy trình tiếp nhận tại NEXUS
+                    </div>
+                    <p className="text-muted-foreground leading-relaxed">
+                      Sau khi bạn gửi yêu cầu, NEXUS sẽ trao đổi làm rõ nhu cầu trong
+                      24h, kết nối đúng CLB phụ trách để thống nhất phương án, chi
+                      phí & thời gian trước khi triển khai.
+                    </p>
+                  </div>
+                </div>
+              </details>
+
+              <div className="hidden lg:block space-y-2">
                 <div className="text-xs font-bold uppercase tracking-wider text-foreground">
                   Hạng mục bàn giao cam kết
                 </div>
                 <FeatureChecklist items={activeService.deliverables} />
               </div>
 
-              <div className="rounded-xl border border-primary/20 bg-primary/5 p-3.5 text-xs space-y-1.5">
+              <div className="hidden lg:block rounded-xl border border-primary/20 bg-primary/5 p-3.5 text-xs space-y-1.5">
                 <div className="font-bold text-primary flex items-center gap-1.5">
                   <ShieldCheck className="size-4" /> Quy trình tiếp nhận tại NEXUS
                 </div>
@@ -232,10 +254,10 @@ export function ServiceOrderDialog({
             </div>
 
             {/* Cột phải: Biểu mẫu điền yêu cầu chi tiết */}
-            <div className="lg:col-span-7 p-6">
-              <DialogHeader className="mb-4">
-                <DialogTitle className="flex items-center gap-2 text-lg">
-                  <Sparkles className="size-4 text-primary" />
+            <div className="lg:col-span-7 min-w-0 p-4 sm:p-6">
+              <DialogHeader className="mb-4 lg:pr-8">
+                <DialogTitle className="flex items-center gap-2 text-base sm:text-lg">
+                  <Sparkles className="size-4 shrink-0 text-primary" />
                   Biểu mẫu Yêu cầu Dịch vụ Doanh nghiệp
                 </DialogTitle>
                 <DialogDescription>
@@ -494,11 +516,20 @@ export function ServiceOrderDialog({
                     </div>
                   )}
 
-                  <div className="flex items-center justify-end gap-2.5 pt-2">
-                    <Button type="button" variant="outline" onClick={onClose}>
+                  <div className="flex flex-col-reverse sm:flex-row sm:items-center sm:justify-end gap-2.5 pt-2">
+                    <Button
+                      type="button"
+                      variant="outline"
+                      onClick={onClose}
+                      className="w-full sm:w-auto min-h-11 sm:min-h-10"
+                    >
                       Hủy
                     </Button>
-                    <Button type="submit" disabled={submitting}>
+                    <Button
+                      type="submit"
+                      disabled={submitting}
+                      className="w-full sm:w-auto min-h-11 sm:min-h-10"
+                    >
                       {submitting ? (
                         <>
                           <Loader2 className="size-4 animate-spin" />

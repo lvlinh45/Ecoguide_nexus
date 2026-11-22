@@ -179,24 +179,28 @@ export function RequestTrackingAndReviewsSection({
   return (
     <section
       id="tracking-reviews"
-      className="mx-auto max-w-6xl px-4 py-16 sm:px-6 scroll-mt-20"
+      className="mx-auto max-w-6xl px-4 py-10 sm:py-16 sm:px-6 scroll-mt-16 sm:scroll-mt-20"
     >
       <SectionHeading
-        className="mb-8"
+        className="mb-6 sm:mb-8"
         badge="Theo dõi, Nghiệm thu & Đánh giá CLB"
         title="Tra cứu tiến độ xử lý & Phản hồi chất lượng hợp tác"
         description="Doanh nghiệp dùng mã yêu cầu (NX-...) để theo dõi trạng thái kết nối CLB, xem biên bản bàn giao và gửi đánh giá công khai về CLB thực hiện."
       />
 
       <Tabs defaultValue="track" className="w-full">
-        <TabsList className="grid w-full max-w-md grid-cols-2">
-          <TabsTrigger value="track">Tra cứu & Gửi đánh giá</TabsTrigger>
-          <TabsTrigger value="reviews">Đánh giá về 4 CLB</TabsTrigger>
+        <TabsList className="grid w-full sm:max-w-md grid-cols-2 h-auto min-h-11">
+          <TabsTrigger value="track" className="min-h-9 text-xs sm:text-sm px-2 sm:px-3.5">
+            Tra cứu & Gửi đánh giá
+          </TabsTrigger>
+          <TabsTrigger value="reviews" className="min-h-9 text-xs sm:text-sm px-2 sm:px-3.5">
+            Đánh giá về 4 CLB
+          </TabsTrigger>
         </TabsList>
 
         <TabsContent value="track" className="mt-5">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
-            <Card className="lg:col-span-5 h-fit">
+            <Card className="lg:col-span-5 h-fit min-w-0">
               <CardHeader>
                 <CardTitle className="text-base">
                   Tra cứu yêu cầu dịch vụ
@@ -262,7 +266,7 @@ export function RequestTrackingAndReviewsSection({
               </CardContent>
             </Card>
 
-            <Card className="lg:col-span-7">
+            <Card className="lg:col-span-7 min-w-0">
               {!tracked ? (
                 <CardContent className="flex flex-col items-center justify-center py-12 text-center space-y-2 text-muted-foreground">
                   <MessageSquareQuote className="size-9 opacity-45" />
@@ -402,17 +406,17 @@ export function RequestTrackingAndReviewsSection({
                       <div className="text-xs font-bold text-foreground">
                         Phản hồi & Đánh giá chất lượng hợp tác về CLB
                       </div>
-                      <div className="flex items-center gap-1.5">
+                      <div className="flex items-center gap-1">
                         {[1, 2, 3, 4, 5].map((star) => (
                           <button
                             key={star}
                             type="button"
                             onClick={() => setRating(star)}
-                            className="p-1 cursor-pointer"
+                            className="min-w-10 min-h-10 flex items-center justify-center rounded-lg hover:bg-amber-50 cursor-pointer"
                             aria-label={`${star} sao`}
                           >
                             <Star
-                              className={`size-5 ${
+                              className={`size-6 sm:size-5 ${
                                 star <= rating
                                   ? "fill-amber-400 text-amber-400"
                                   : "text-muted-foreground/40"
@@ -420,12 +424,12 @@ export function RequestTrackingAndReviewsSection({
                             />
                           </button>
                         ))}
-                        <span className="text-xs font-semibold ml-1">
+                        <span className="text-xs font-semibold ml-1.5">
                           {rating}/5 sao
                         </span>
                       </div>
 
-                      <div className="flex flex-wrap gap-1.5">
+                      <div className="flex flex-wrap gap-2">
                         {REVIEW_HIGHLIGHT_OPTIONS.map((tag) => {
                           const active = selectedHighlights.includes(tag);
                           return (
@@ -435,7 +439,7 @@ export function RequestTrackingAndReviewsSection({
                               size="sm"
                               variant={active ? "default" : "outline"}
                               onClick={() => handleToggleHighlight(tag)}
-                              className="h-7 rounded-full px-2.5 text-[11px]"
+                              className="min-h-9 sm:min-h-7 sm:h-7 rounded-full px-3 text-xs sm:text-[11px]"
                             >
                               {tag}
                             </Button>
@@ -462,7 +466,12 @@ export function RequestTrackingAndReviewsSection({
                         </div>
                       )}
 
-                      <Button type="submit" size="sm" disabled={reviewSubmitting}>
+                      <Button
+                        type="submit"
+                        size="sm"
+                        disabled={reviewSubmitting}
+                        className="w-full sm:w-auto min-h-11 sm:min-h-9"
+                      >
                         {reviewSubmitting ? (
                           <Loader2 className="size-3.5 animate-spin" />
                         ) : (
@@ -485,7 +494,7 @@ export function RequestTrackingAndReviewsSection({
 
         <TabsContent value="reviews" className="mt-5 space-y-5">
           {/* Thống kê sao theo từng CLB */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+          <div className="grid grid-cols-1 min-[380px]:grid-cols-2 md:grid-cols-4 gap-2.5 sm:gap-3">
             {(["guide", "ytc", "music", "english"] as const).map((mod) => {
               const stat = reviewsData.statsByClub?.[mod] || {
                 count: 0,
@@ -499,7 +508,7 @@ export function RequestTrackingAndReviewsSection({
                   onClick={() =>
                     setClubFilter((prev) => (prev === mod ? "all" : mod))
                   }
-                  className={`rounded-xl border p-3.5 text-left transition-all cursor-pointer ${
+                  className={`rounded-xl border p-3 sm:p-3.5 text-left transition-all cursor-pointer ${
                     active
                       ? "border-primary bg-primary/5 shadow-xs"
                       : "bg-card hover:border-primary/40"
@@ -508,12 +517,12 @@ export function RequestTrackingAndReviewsSection({
                   <div className="text-xs font-bold text-foreground">
                     {CLUB_LABELS[mod]}
                   </div>
-                  <div className="mt-1.5 flex items-center gap-1.5 text-sm font-extrabold">
-                    <Star className="size-4 fill-amber-400 text-amber-400" />
+                  <div className="mt-1.5 flex flex-wrap items-center gap-1 text-sm font-extrabold">
+                    <Star className="size-4 shrink-0 fill-amber-400 text-amber-400" />
                     <span>
                       {stat.count > 0 ? `${stat.avgRating}/5` : "Chưa có"}
                     </span>
-                    <span className="text-xs font-normal text-muted-foreground">
+                    <span className="text-[11px] font-normal text-muted-foreground">
                       ({stat.count} đánh giá)
                     </span>
                   </div>

@@ -71,11 +71,11 @@ export function ClubProjectCard({
           <FeatureChecklist items={project.highlights.slice(0, 3)} />
 
           <div className="flex flex-wrap items-center justify-between gap-2 rounded-xl bg-muted/60 px-3.5 py-2.5 text-xs">
-            <span className="font-mono font-semibold text-foreground flex items-center gap-1.5">
-              <Globe className="size-3.5 text-primary" />
-              {domainLabel}
+            <span className="font-mono font-semibold text-foreground flex items-center gap-1.5 min-w-0 truncate">
+              <Globe className="size-3.5 shrink-0 text-primary" />
+              <span className="truncate">{domainLabel}</span>
             </span>
-            <Badge variant="secondary" className="font-semibold">
+            <Badge variant="secondary" className="font-semibold shrink-0">
               {project.priceRange}
             </Badge>
           </div>
@@ -84,27 +84,31 @@ export function ClubProjectCard({
 
       <Separator />
 
-      <CardFooter className="flex flex-wrap items-center justify-between gap-2 pt-1">
-        <div className="flex items-center gap-1.5">
-          <Button
-            type="button"
-            variant="ghost"
-            size="sm"
-            onClick={() => onInspect(project)}
-          >
-            Hồ sơ năng lực
-          </Button>
-          <Button
-            type="button"
-            variant="outline"
-            size="sm"
-            onClick={() => onOrderClub(project)}
-          >
-            Đặt dịch vụ CLB
-          </Button>
-        </div>
+      <CardFooter className="grid grid-cols-2 gap-2 pt-2 sm:flex sm:flex-wrap sm:items-center sm:justify-between">
+        <Button
+          type="button"
+          variant="ghost"
+          size="sm"
+          className="w-full sm:w-auto min-h-10 sm:min-h-8"
+          onClick={() => onInspect(project)}
+        >
+          Hồ sơ năng lực
+        </Button>
+        <Button
+          type="button"
+          variant="outline"
+          size="sm"
+          className="w-full sm:w-auto min-h-10 sm:min-h-8"
+          onClick={() => onOrderClub(project)}
+        >
+          Đặt dịch vụ CLB
+        </Button>
 
-        <Button size="sm" asChild>
+        <Button
+          size="sm"
+          asChild
+          className="col-span-2 w-full sm:col-span-1 sm:w-auto sm:ml-auto min-h-10 sm:min-h-8"
+        >
           <a href={project.url} target="_blank" rel="noopener noreferrer">
             Cổng CLB
             <ExternalLink className="size-3.5" />

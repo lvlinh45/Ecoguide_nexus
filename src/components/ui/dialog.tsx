@@ -54,13 +54,13 @@ function DialogContent({
       <DialogPrimitive.Content
         data-slot="dialog-content"
         className={cn(
-          "bg-background fixed top-[50%] left-[50%] z-50 grid w-full max-w-[calc(100%-2rem)] translate-x-[-50%] translate-y-[-50%] gap-4 rounded-2xl border p-6 shadow-xl sm:max-w-xl",
+          "bg-background fixed top-[50%] left-[50%] z-50 grid w-full max-w-[calc(100%-1.5rem)] translate-x-[-50%] translate-y-[-50%] gap-4 rounded-2xl border p-4 sm:p-6 shadow-xl sm:max-w-xl",
           className,
         )}
         {...props}
       >
         {children}
-        <DialogPrimitive.Close className="ring-offset-background focus:ring-ring absolute top-4 right-4 rounded-md opacity-70 transition-opacity hover:opacity-100 focus:ring-2 focus:outline-none cursor-pointer">
+        <DialogPrimitive.Close className="ring-offset-background focus:ring-ring absolute top-3 right-3 sm:top-4 sm:right-4 flex size-9 items-center justify-center rounded-full bg-background/80 backdrop-blur-xs opacity-80 transition-opacity hover:bg-muted hover:opacity-100 focus:ring-2 focus:outline-none cursor-pointer">
           <X className="size-4" />
           <span className="sr-only">Đóng</span>
         </DialogPrimitive.Close>

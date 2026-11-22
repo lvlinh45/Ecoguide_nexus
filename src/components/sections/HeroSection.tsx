@@ -12,51 +12,57 @@ interface HeroSectionProps {
 export function HeroSection({ config, onOpenOrder }: HeroSectionProps) {
   return (
     <section id="top" className="relative overflow-hidden nexus-grid-bg">
-      <div className="mx-auto max-w-6xl px-4 pt-12 pb-10 sm:px-6 sm:pt-16 sm:pb-12">
-        <div className="mx-auto max-w-3xl text-center space-y-5">
+      <div className="mx-auto max-w-6xl px-4 pt-8 pb-8 sm:px-6 sm:pt-16 sm:pb-12">
+        <div className="mx-auto max-w-3xl text-center space-y-4 sm:space-y-5">
           <Badge
             variant="outline"
-            className="px-3.5 py-1 text-xs font-semibold gap-1.5 bg-background"
+            className="max-w-full whitespace-normal text-center leading-snug px-3 py-1 text-[11px] sm:text-xs font-semibold gap-1.5 bg-background"
           >
-            <Sparkles className="size-3.5 text-primary" />
-            {config.ecosystemBadge}
+            <Sparkles className="size-3.5 shrink-0 text-primary" />
+            <span>{config.ecosystemBadge}</span>
           </Badge>
 
-          <h1 className="text-3xl font-extrabold tracking-tight text-foreground sm:text-5xl leading-[1.15]">
+          <h1 className="text-2xl font-extrabold tracking-tight text-foreground sm:text-5xl leading-[1.2] sm:leading-[1.15]">
             {config.heroTitle}
           </h1>
 
-          <p className="text-base text-muted-foreground sm:text-lg leading-relaxed">
+          <p className="text-sm text-muted-foreground sm:text-lg leading-relaxed">
             {config.heroSubtitle}
           </p>
 
-          <p className="text-sm font-semibold text-primary tracking-wide uppercase">
+          <p className="text-xs sm:text-sm font-semibold text-primary tracking-wide uppercase">
             “{config.slogan}”
           </p>
 
-          <div className="flex flex-wrap items-center justify-center gap-3 pt-2">
-            <Button size="lg" asChild>
+          <div className="flex flex-col sm:flex-row sm:flex-wrap items-stretch sm:items-center justify-center gap-2.5 sm:gap-3 pt-1 sm:pt-2">
+            <Button size="lg" asChild className="w-full sm:w-auto min-h-11">
               <a href="#services">
                 Chọn nhóm dịch vụ CLB
                 <ArrowRight className="size-4" />
               </a>
             </Button>
-            <Button size="lg" variant="outline" type="button" onClick={onOpenOrder}>
+            <Button
+              size="lg"
+              variant="outline"
+              type="button"
+              onClick={onOpenOrder}
+              className="w-full sm:w-auto min-h-11"
+            >
               Điền biểu mẫu yêu cầu ngay
             </Button>
           </div>
         </div>
 
-        <div className="mt-10 grid grid-cols-2 gap-3 sm:grid-cols-4 sm:gap-4">
+        <div className="mt-7 sm:mt-10 grid grid-cols-2 gap-2.5 sm:grid-cols-4 sm:gap-4">
           {NEXUS_STATS.map((stat) => (
             <div
               key={stat.label}
-              className="rounded-xl border bg-card/90 px-4 py-3.5 text-center shadow-xs"
+              className="rounded-xl border bg-card/90 px-3 py-3 sm:px-4 sm:py-3.5 text-center shadow-xs"
             >
-              <div className="text-lg font-extrabold text-foreground sm:text-xl">
+              <div className="text-base font-extrabold text-foreground sm:text-xl">
                 {stat.value}
               </div>
-              <div className="mt-0.5 text-xs text-muted-foreground">
+              <div className="mt-0.5 text-[11px] sm:text-xs text-muted-foreground leading-snug">
                 {stat.label}
               </div>
             </div>

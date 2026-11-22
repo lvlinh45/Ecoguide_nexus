@@ -52,6 +52,7 @@
 
 html {
   scroll-behavior: smooth;
+  overflow-x: clip;
 }
 
 @layer base {
@@ -60,7 +61,17 @@ html {
   }
   body {
     @apply bg-background text-foreground font-sans;
+    overflow-x: clip;
   }
+}
+
+.scrollbar-none {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.scrollbar-none::-webkit-scrollbar {
+  display: none;
 }
 
 .nexus-grid-bg {
