@@ -163,7 +163,7 @@ export function ServiceOrderDialog({
         <DialogContent className="sm:max-w-4xl max-h-[92dvh] overflow-y-auto p-0">
           <div className="grid grid-cols-1 lg:grid-cols-12">
             {/* Cột trái: Thông tin chi tiết dịch vụ & CLB phụ trách */}
-            <div className="lg:col-span-5 bg-muted/40 p-4 sm:p-6 border-b lg:border-b-0 lg:border-r space-y-4 sm:space-y-5">
+            <div className="lg:col-span-5 min-w-0 bg-muted/40 p-4 sm:p-6 border-b lg:border-b-0 lg:border-r space-y-4 sm:space-y-5">
               <div className="flex items-start gap-3 pr-8 lg:pr-0">
                 <ClubProjectIcon
                   project={{
@@ -214,10 +214,10 @@ export function ServiceOrderDialog({
 
               {/* Thu gọn mặc định phần chi tiết phụ trên mobile để thấy form ngay, mở sẵn trên desktop */}
               <details className="group lg:hidden rounded-xl border bg-background/80 px-3 py-2 text-xs">
-                <summary className="cursor-pointer font-bold text-foreground list-none flex items-center justify-between py-1">
+                <summary className="cursor-pointer font-bold text-foreground list-none flex items-center justify-between gap-2 py-1">
                   <span>Xem hạng mục bàn giao & quy trình NEXUS</span>
-                  <span className="text-primary text-[11px] group-open:hidden">Mở rộng</span>
-                  <span className="text-primary text-[11px] hidden group-open:inline">Thu gọn</span>
+                  <span className="text-primary text-[11px] shrink-0 whitespace-nowrap group-open:hidden">Mở rộng</span>
+                  <span className="text-primary text-[11px] shrink-0 whitespace-nowrap hidden group-open:inline">Thu gọn</span>
                 </summary>
                 <div className="pt-2 space-y-3 border-t mt-2">
                   <FeatureChecklist items={activeService.deliverables} />
@@ -254,7 +254,7 @@ export function ServiceOrderDialog({
             </div>
 
             {/* Cột phải: Biểu mẫu điền yêu cầu chi tiết */}
-            <div className="lg:col-span-7 p-4 sm:p-6">
+            <div className="lg:col-span-7 min-w-0 p-4 sm:p-6">
               <DialogHeader className="mb-4 lg:pr-8">
                 <DialogTitle className="flex items-center gap-2 text-base sm:text-lg">
                   <Sparkles className="size-4 shrink-0 text-primary" />

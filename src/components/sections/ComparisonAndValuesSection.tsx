@@ -131,12 +131,12 @@ export function ComparisonAndValuesSection() {
         />
 
         <Tabs defaultValue="business">
-          <TabsList className="flex w-full overflow-x-auto scrollbar-none justify-start sm:w-fit h-auto min-h-11">
+          <TabsList className="flex flex-wrap w-full sm:w-fit h-auto gap-1 p-1">
             {STAKEHOLDER_KEYS.map((key) => (
               <TabsTrigger
                 key={key}
                 value={key}
-                className="shrink-0 min-h-9 px-3 text-xs sm:text-sm"
+                className="flex-1 sm:flex-initial min-h-9 px-2.5 sm:px-3.5 text-xs sm:text-sm"
               >
                 {STAKEHOLDER_VALUES[key].label}
               </TabsTrigger>
