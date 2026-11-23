@@ -40,6 +40,28 @@ interface ServiceOrderDialogProps {
   onClose: () => void;
 }
 
+/** Form label displaying an inline red required asterisk for mandatory fields. */
+function RequiredLabel({
+  htmlFor,
+  className,
+  children,
+}: {
+  htmlFor: string;
+  className?: string;
+  children: React.ReactNode;
+}) {
+  return (
+    <Label htmlFor={htmlFor} className={className}>
+      <span>
+        {children}{" "}
+        <span className="text-destructive font-semibold" aria-hidden="true">
+          *
+        </span>
+      </span>
+    </Label>
+  );
+}
+
 export function ServiceOrderDialog({
   service,
   onClose,
@@ -384,9 +406,9 @@ export function ServiceOrderDialog({
 
                   {/* Mô tả chung, số lượng, thời gian & ngân sách */}
                   <div className="space-y-1.5">
-                    <Label htmlFor="nexus-work-desc" className="font-semibold">
-                      Mô tả tổng quan công việc & yêu cầu bổ sung *
-                    </Label>
+                    <RequiredLabel htmlFor="nexus-work-desc" className="font-semibold">
+                      Mô tả tổng quan công việc & yêu cầu bổ sung
+                    </RequiredLabel>
                     <Textarea
                       id="nexus-work-desc"
                       required
@@ -411,9 +433,9 @@ export function ServiceOrderDialog({
                       />
                     </div>
                     <div className="space-y-1.5">
-                      <Label htmlFor="nexus-timeline" className="font-semibold">
-                        Thời gian thực hiện *
-                      </Label>
+                      <RequiredLabel htmlFor="nexus-timeline" className="font-semibold">
+                        Thời gian thực hiện
+                      </RequiredLabel>
                       <Input
                         id="nexus-timeline"
                         required
@@ -424,9 +446,9 @@ export function ServiceOrderDialog({
                       />
                     </div>
                     <div className="space-y-1.5">
-                      <Label htmlFor="nexus-budget" className="font-semibold">
-                        Ngân sách dự kiến *
-                      </Label>
+                      <RequiredLabel htmlFor="nexus-budget" className="font-semibold">
+                        Ngân sách dự kiến
+                      </RequiredLabel>
                       <Input
                         id="nexus-budget"
                         required
@@ -445,9 +467,9 @@ export function ServiceOrderDialog({
                   </div>
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                     <div className="space-y-1.5">
-                      <Label htmlFor="nexus-company">
-                        Tên Doanh nghiệp / Đơn vị *
-                      </Label>
+                      <RequiredLabel htmlFor="nexus-company">
+                        Tên Doanh nghiệp / Đơn vị
+                      </RequiredLabel>
                       <Input
                         id="nexus-company"
                         required
@@ -458,9 +480,9 @@ export function ServiceOrderDialog({
                       />
                     </div>
                     <div className="space-y-1.5">
-                      <Label htmlFor="nexus-contact-name">
-                        Họ tên người liên hệ *
-                      </Label>
+                      <RequiredLabel htmlFor="nexus-contact-name">
+                        Họ tên người liên hệ
+                      </RequiredLabel>
                       <Input
                         id="nexus-contact-name"
                         required
@@ -471,9 +493,9 @@ export function ServiceOrderDialog({
                       />
                     </div>
                     <div className="space-y-1.5">
-                      <Label htmlFor="nexus-phone">
-                        Số điện thoại / Zalo *
-                      </Label>
+                      <RequiredLabel htmlFor="nexus-phone">
+                        Số điện thoại / Zalo
+                      </RequiredLabel>
                       <Input
                         id="nexus-phone"
                         required
@@ -484,7 +506,9 @@ export function ServiceOrderDialog({
                       />
                     </div>
                     <div className="space-y-1.5">
-                      <Label htmlFor="nexus-email">Email liên hệ *</Label>
+                      <RequiredLabel htmlFor="nexus-email">
+                        Email liên hệ
+                      </RequiredLabel>
                       <Input
                         id="nexus-email"
                         required
