@@ -6,7 +6,7 @@ import type {
   NexusServiceRequestPayload,
   NexusTrackedRequest,
 } from "@/types/nexus";
-import { sanitizeSafeUrl } from "@/utils/safeUrl";
+import { normalizeApiBaseUrl, sanitizeSafeUrl } from "@/utils/safeUrl";
 
 declare global {
   interface Window {
@@ -17,11 +17,9 @@ declare global {
 }
 
 const getApiBaseUrl = (): string => {
-  const runtimeUrl = window.__ENV__?.VITE_API_URL;
-  if (runtimeUrl) return runtimeUrl.replace(/\/$/, "");
-  const buildUrl = import.meta.env.VITE_API_URL;
-  if (buildUrl) return buildUrl.replace(/\/$/, "");
-  return "";
+  const runtimeUrl = normalizeApiBaseUrl(window.__ENV__?.VITE_API_URL);
+  if (runtimeUrl) return runtimeUrl;
+  return normalizeApiBaseUrl(import.meta.env.VITE_API_URL);
 };
 
 export { sanitizeSafeUrl };

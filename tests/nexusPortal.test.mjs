@@ -1,7 +1,7 @@
 import assert from "node:assert/strict";
 import fs from "node:fs";
 import path from "node:path";
-import { sanitizeSafeUrl } from "../src/utils/safeUrl.ts";
+import { normalizeApiBaseUrl, sanitizeSafeUrl } from "../src/utils/safeUrl.ts";
 
 const nexusRoot = path.resolve(import.meta.dirname, "..");
 
@@ -99,6 +99,20 @@ assert.equal(sanitizeSafeUrl("  JAVASCRIPT:alert(1)", "#"), "#");
 assert.equal(sanitizeSafeUrl("data:text/html,<script>alert(1)</script>", "#"), "#");
 assert.equal(sanitizeSafeUrl("vbscript:msgbox(1)", "#"), "#");
 assert.equal(sanitizeSafeUrl("//evil.example/phish", "#"), "#");
+
+// 5b. Verify normalizeApiBaseUrl upgrades non-localhost http:// to https:// when served over HTTPS
+assert.equal(
+  normalizeApiBaseUrl("http://production-backend.ecoguide.vn/api/", "https:"),
+  "https://production-backend.ecoguide.vn/api",
+);
+assert.equal(
+  normalizeApiBaseUrl("http://localhost:5000/api", "https:"),
+  "http://localhost:5000/api",
+);
+assert.equal(
+  normalizeApiBaseUrl("http://production-backend.ecoguide.vn/api", "http:"),
+  "http://production-backend.ecoguide.vn/api",
+);
 
 // 6. Verify SEO / Open Graph / Twitter meta tags in index.html
 const indexHtml = fs.readFileSync(path.join(nexusRoot, "index.html"), "utf8");
