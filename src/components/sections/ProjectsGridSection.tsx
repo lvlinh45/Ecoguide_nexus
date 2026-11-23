@@ -24,14 +24,11 @@ export function ProjectsGridSection({
     <section id="projects" className="mx-auto max-w-6xl px-4 py-10 sm:py-12 sm:px-6 sm:pb-18 scroll-mt-16 sm:scroll-mt-20">
       <div className="flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between mb-6">
         <SectionHeading
-          badge="Hệ sinh thái 4 CLB nòng cốt"
+          badge="4 CLB nòng cốt"
           badgeVariant="secondary"
-          title="Chọn dự án CLB để truy cập trực tiếp"
-          description="Nhấn trực tiếp vào từng thẻ CLB để chuyển sang cổng thông tin & hoạt động chuyên biệt của câu lạc bộ đó."
+          title="Truy cập cổng thông tin từng CLB"
+          description="Xem nhanh hồ sơ năng lực hoặc mở trực tiếp cổng hoạt động của từng câu lạc bộ."
         />
-        <span className="text-xs text-muted-foreground shrink-0">
-          URL được đồng bộ từ trang Quản trị
-        </span>
       </div>
 
       {isLoading ? (
@@ -52,7 +49,6 @@ export function ProjectsGridSection({
               key={project.id}
               project={project}
               onInspect={setSelectedProject}
-              onOrderClub={onOrderClub}
             />
           ))}
         </div>

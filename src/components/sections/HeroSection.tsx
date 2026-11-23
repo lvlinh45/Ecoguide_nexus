@@ -37,7 +37,7 @@ export function HeroSection({ config, onOpenOrder }: HeroSectionProps) {
           <div className="flex flex-col sm:flex-row sm:flex-wrap items-stretch sm:items-center justify-center gap-2.5 sm:gap-3 pt-1 sm:pt-2">
             <Button size="lg" asChild className="w-full sm:w-auto min-h-11">
               <a href="#services">
-                Chọn nhóm dịch vụ CLB
+                Chọn gói dịch vụ
                 <ArrowRight className="size-4" />
               </a>
             </Button>
@@ -48,7 +48,7 @@ export function HeroSection({ config, onOpenOrder }: HeroSectionProps) {
               onClick={onOpenOrder}
               className="w-full sm:w-auto min-h-11"
             >
-              Điền biểu mẫu yêu cầu ngay
+              Gửi yêu cầu ngay
             </Button>
           </div>
         </div>
