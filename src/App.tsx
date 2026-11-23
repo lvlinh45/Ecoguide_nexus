@@ -11,6 +11,7 @@ import { Separator } from "@/components/ui/separator";
 import { DEFAULT_NEXUS_CONFIG } from "@/data/nexusDefaults";
 import { NEXUS_SERVICE_CATALOG } from "@/data/nexusServices";
 import { fetchNexusPortalConfig } from "@/services/nexusApi";
+import { syncDocumentSeo } from "@/utils/seo";
 import type {
   NexusClubProject,
   NexusPortalConfig,
@@ -39,6 +40,13 @@ export function App() {
       active = false;
     };
   }, []);
+
+  useEffect(() => {
+    syncDocumentSeo({
+      title: `${config.brandName} — ${config.heroTitle}`,
+      description: config.heroSubtitle,
+    });
+  }, [config.brandName, config.heroTitle, config.heroSubtitle]);
 
   const handleOpenDefaultOrder = () => {
     setSelectedService(NEXUS_SERVICE_CATALOG[0]);
