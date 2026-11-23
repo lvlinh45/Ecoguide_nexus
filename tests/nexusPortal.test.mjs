@@ -69,6 +69,9 @@ for (const expected of [
   "english.ecoguide.vn",
   "Kết nối đam mê – Khai phóng tài năng – Kiến tạo giá trị",
   "/logo_hdv.jpg",
+  "/logo_ytc.jpg",
+  "/logo_amnhac.jpg",
+  "/logo_english.jpg",
 ]) {
   assert.ok(
     defaultsSrc.includes(expected),
