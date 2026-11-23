@@ -5,7 +5,6 @@ import { FaqAndFooterSection } from "@/components/sections/FaqAndFooterSection";
 import { HeroSection } from "@/components/sections/HeroSection";
 import { ProcessSection } from "@/components/sections/ProcessSection";
 import { ProjectsGridSection } from "@/components/sections/ProjectsGridSection";
-import { RequestTrackingAndReviewsSection } from "@/components/sections/RequestTrackingAndReviewsSection";
 import { ServiceOrderDialog } from "@/components/sections/ServiceOrderDialog";
 import { ServicesSection } from "@/components/sections/ServicesSection";
 import { Separator } from "@/components/ui/separator";
@@ -23,10 +22,6 @@ export function App() {
   const [isLoading, setIsLoading] = useState(true);
   const [selectedService, setSelectedService] =
     useState<NexusServiceItem | null>(null);
-  const [trackingPrefill, setTrackingPrefill] = useState({
-    code: "",
-    contact: "",
-  });
 
   useEffect(() => {
     let active = true;
@@ -76,23 +71,12 @@ export function App() {
         <Separator />
         <ComparisonAndValuesSection />
         <Separator />
-        <RequestTrackingAndReviewsSection
-          prefillCode={trackingPrefill.code}
-          prefillContact={trackingPrefill.contact}
-        />
-        <Separator />
-        <FaqAndFooterSection
-          config={config}
-          onOpenOrder={handleOpenDefaultOrder}
-        />
+        <FaqAndFooterSection config={config} />
       </main>
 
       <ServiceOrderDialog
         service={selectedService}
         onClose={() => setSelectedService(null)}
-        onSubmitted={(created, contact) =>
-          setTrackingPrefill({ code: created.requestCode, contact })
-        }
       />
     </div>
   );

@@ -11,9 +11,9 @@ export const DEFAULT_NEXUS_CONFIG: NexusPortalConfig = {
   ecosystemBadge: "Một hệ sinh thái – Nhiều tài năng",
   slogan: "Kết nối đam mê – Khai phóng tài năng – Kiến tạo giá trị",
   heroTitle:
-    "Cầu nối Doanh nghiệp Khánh Hòa & Mạng lưới CLB Sinh viên Đại học Nha Trang",
+    "Cầu nối Doanh nghiệp Khánh Hòa & 4 CLB Sinh viên ĐH Nha Trang",
   heroSubtitle:
-    "NEXUS số hóa thế mạnh của từng câu lạc bộ sinh viên thành dịch vụ chuyên nghiệp — có hồ sơ năng lực số, hợp đồng ba bên, giảng viên cố vấn và quy trình nghiệm thu rõ ràng.",
+    "Điều phối một đầu mối cho các nhu cầu truyền thông, âm nhạc, hướng dẫn du lịch và ngoại ngữ — quy trình rõ ràng, chi phí tối ưu.",
   contactEmail: "nexus@ecoguide.vn",
   contactPhone: "0905 123 456",
   contactAddress: "02 Nguyễn Đình Chiểu, Vĩnh Thọ, Nha Trang, Khánh Hòa",
@@ -227,84 +227,58 @@ export const SERVICE_GROUPS: Record<"single" | "combo" | "custom", ServicePackag
 export const COMPARISON_ROWS: ComparisonRow[] = [
   {
     criterion: "Chi phí triển khai",
-    nexus: "Thấp & minh bạch",
+    nexus: "Tối ưu & minh bạch",
     agency: "Cao",
     freelancer: "Trung bình",
     directClub: "Thấp",
   },
   {
-    criterion: "Cam kết chất lượng, nghiệm thu",
-    nexus: "Có, theo quy trình chuẩn",
-    agency: "Có",
-    freelancer: "Thấp",
-    directClub: "Không ổn định",
+    criterion: "Chất lượng & cố vấn chuyên môn",
+    nexus: "Giảng viên cố vấn đồng hành",
+    agency: "Theo hợp đồng",
+    freelancer: "Khó kiểm soát",
+    directClub: "Chưa đồng đều",
   },
   {
-    criterion: "Hợp đồng ba bên, thanh toán rõ ràng",
-    nexus: "Có đầy đủ",
-    agency: "Có",
+    criterion: "Hợp đồng & thanh toán",
+    nexus: "Hợp đồng ba bên rõ ràng",
+    agency: "Có đầy đủ",
     freelancer: "Hạn chế",
-    directClub: "Hạn chế",
+    directClub: "Tự thỏa thuận",
   },
   {
-    criterion: "Giảng viên, chuyên gia cố vấn",
-    nexus: "Có đồng hành",
-    agency: "Không",
-    freelancer: "Không",
-    directClub: "Tùy CLB",
-  },
-  {
-    criterion: "Kết nối tuyển dụng thực tập sinh",
-    nexus: "Có hồ sơ đánh giá thực chiến",
-    agency: "Không",
-    freelancer: "Không",
-    directClub: "Hạn chế",
-  },
-  {
-    criterion: "Tìm & phối hợp đa CLB nhanh chóng",
-    nexus: "Hồ sơ năng lực số một đầu mối",
-    agency: "Không áp dụng",
-    freelancer: "Phải tự tìm rời rạc",
-    directClub: "Phải tự liên hệ từng nơi",
+    criterion: "Phối hợp đa lĩnh vực",
+    nexus: "Một đầu mối kết nối 4 CLB",
+    agency: "Phụ thuộc gói",
+    freelancer: "Phải tự tìm lẻ",
+    directClub: "Liên hệ từng CLB",
   },
 ];
 
 export const PROCESS_STEPS: ProcessStep[] = [
   {
     step: "01",
-    title: "Tìm hiểu & Chọn dịch vụ CLB",
+    title: "Chọn dịch vụ & gửi yêu cầu",
     description:
-      "Doanh nghiệp tham khảo năng lực 4 CLB trên web và chọn đúng nhóm dịch vụ cần hỗ trợ (quay dựng video, thiết kế, âm nhạc, hướng dẫn du lịch, ngoại ngữ hoặc gói khác).",
+      "Chọn gói phù hợp trên danh mục và gửi mô tả nhu cầu, thời gian, ngân sách dự kiến.",
   },
   {
     step: "02",
-    title: "Điền biểu mẫu yêu cầu chi tiết",
+    title: "Tư vấn & ghép nối CLB (< 24h)",
     description:
-      "Cung cấp thông tin liên hệ, mô tả cụ thể công việc, số lượng/quy mô, thời gian thực hiện và ngân sách dự kiến; nhận mã yêu cầu để theo dõi.",
+      "NEXUS làm rõ yêu cầu trong vòng 24 giờ và điều phối CLB phù hợp kèm báo giá chi tiết.",
   },
   {
     step: "03",
-    title: "NEXUS tiếp nhận & Tư vấn kết nối",
+    title: "Xác nhận & triển khai",
     description:
-      "Trong vòng 24h, NEXUS trao đổi làm rõ nhu cầu với doanh nghiệp và kết nối với CLB có năng lực phù hợp nhất.",
+      "Thống nhất phạm vi công việc qua hợp đồng ba bên, thực hiện dưới sự đồng hành của cố vấn.",
   },
   {
     step: "04",
-    title: "Thống nhất phương án, chi phí & tiến độ",
+    title: "Bàn giao & hoàn tất",
     description:
-      "Doanh nghiệp – NEXUS – CLB cùng thống nhất phạm vi công việc, báo giá, lịch trình và ký xác nhận hợp đồng ba bên minh bạch.",
-  },
-  {
-    step: "05",
-    title: "CLB triển khai & Bàn giao kết quả",
-    description:
-      "CLB thực hiện dịch vụ dưới sự giám sát chuyên môn của giảng viên cố vấn, gửi link/biên bản bàn giao kết quả đúng hẹn.",
-  },
-  {
-    step: "06",
-    title: "Phản hồi & Đánh giá chất lượng CLB",
-    description:
-      "Doanh nghiệp tra cứu mã yêu cầu ngay trên web để nghiệm thu và gửi đánh giá chất lượng hợp tác về CLB đó.",
+      "Bàn giao sản phẩm đúng hẹn, tiếp nhận chỉnh sửa theo cam kết và xác nhận hoàn thành.",
   },
 ];
 
@@ -313,49 +287,42 @@ export const STAKEHOLDER_VALUES = {
     label: "Doanh nghiệp",
     points: [
       "Tiếp cận nhân lực trẻ sáng tạo với chi phí tối ưu hơn agency truyền thống.",
-      "Chỉ cần một đầu mối NEXUS để phối hợp đa lĩnh vực: du lịch, truyền thông, âm nhạc, ngoại ngữ.",
-      "Bảo đảm chất lượng qua hợp đồng ba bên, quy trình nghiệm thu và giảng viên cố vấn.",
-      "Xây dựng phễu tuyển dụng thực tập sinh sớm dựa trên năng lực thực chiến.",
+      "Chỉ cần một đầu mối để phối hợp đồng bộ từ truyền thông, âm nhạc tới đón tiếp.",
+      "Kết nối sớm với sinh viên có năng lực thực chiến để tuyển dụng thực tập sinh.",
     ],
   },
   students: {
     label: "CLB & Sinh viên",
     points: [
-      "Chuyển hóa đam mê & chuyên môn thành nguồn thu nhập minh bạch (85% giá trị hợp đồng về CLB).",
-      "Thực hành trên dự án thật của doanh nghiệp Khánh Hòa thay vì chỉ hoạt động phong trào.",
-      "Tích lũy hồ sơ năng lực số (E-Portfolio), nhận đánh giá thực tế từ doanh nghiệp.",
-      "Mở rộng kết nối nghề nghiệp và cơ hội việc làm tại địa phương ngay khi còn đi học.",
+      "Tạo nguồn thu minh bạch cho hoạt động CLB (85% giá trị hợp đồng về CLB).",
+      "Thực hành trực tiếp trên dự án doanh nghiệp thay vì chỉ hoạt động nội bộ.",
+      "Tích lũy hồ sơ năng lực thực tế (E-Portfolio) và cơ hội nghề nghiệp tại địa phương.",
     ],
   },
   ecosystem: {
     label: "Nhà trường & Địa phương",
     points: [
-      "Gắn kết chặt chẽ đào tạo với thực tiễn thị trường du lịch, dịch vụ Nha Trang – Khánh Hòa.",
-      "Hỗ trợ doanh nghiệp SME tiếp cận lực lượng sáng tạo trẻ, thúc đẩy đổi mới sáng tạo.",
-      "Giữ chân nguồn nhân lực trẻ chất lượng cao ở lại làm việc tại tỉnh Khánh Hòa.",
+      "Gắn kết đào tạo với nhu cầu thực tiễn của thị trường dịch vụ Nha Trang – Khánh Hòa.",
+      "Hỗ trợ doanh nghiệp SME tiếp cận lực lượng sáng tạo trẻ với chi phí hợp lý.",
+      "Giữ chân nguồn nhân lực sinh viên chất lượng ở lại đóng góp cho địa phương.",
     ],
   },
 };
 
 export const NEXUS_FAQS: FaqItem[] = [
   {
-    question: "NEXUS có phải là một CLB đơn lẻ không?",
+    question: "NEXUS hoạt động như thế nào?",
     answer:
-      "Không. NEXUS là nền tảng điều phối trung gian kết nối doanh nghiệp tại Khánh Hòa với mạng lưới các CLB sinh viên (khởi đầu với 4 CLB nòng cốt tại Đại học Nha Trang: CLB Hướng dẫn viên, CLB Truyền thông YTC, CLB Âm nhạc và CLB Tiếng Anh), cho phép đặt dịch vụ đơn lẻ hoặc phối hợp đa CLB qua một đầu mối.",
+      "NEXUS là đầu mối điều phối trung gian kết nối doanh nghiệp tại Khánh Hòa với mạng lưới CLB sinh viên Đại học Nha Trang, hỗ trợ đặt dịch vụ đơn lẻ hoặc gói phối hợp đa CLB.",
   },
   {
-    question: "Chất lượng sinh viên thực hiện dự án được đảm bảo bằng cách nào?",
+    question: "Chất lượng triển khai được đảm bảo ra sao?",
     answer:
-      "Mỗi CLB đều có cơ cấu Ban chủ nhiệm, hồ sơ năng lực, nhân sự dự phòng tránh trùng lịch thi và giảng viên cố vấn đồng hành. Dự án được ký kết theo hợp đồng ba bên, kiểm soát tiến độ theo giai đoạn và nghiệm thu rõ ràng trước khi tất toán.",
+      "Mỗi dự án đều có Ban chủ nhiệm CLB phụ trách, nhân sự dự phòng, hợp đồng ba bên minh bạch và giảng viên cố vấn chuyên môn theo sát đến khi bàn giao.",
   },
   {
-    question: "Các đường dẫn (URL) tới từng CLB có thể thay đổi linh hoạt không?",
+    question: "Bao lâu doanh nghiệp nhận được phản hồi báo giá?",
     answer:
-      "Có. Toàn bộ URL cổng từng CLB (ví dụ clb.ecoguide.vn, ytc.ecoguide.vn, music.ecoguide.vn, english.ecoguide.vn), tên hiển thị, mức giá và trạng thái hiển thị đều được quản trị tập trung tại hệ thống Admin của EcoGuide và đồng bộ trực tiếp về trang NEXUS.",
-  },
-  {
-    question: "Doanh nghiệp mất bao lâu để nhận đề xuất phương án sau khi liên hệ?",
-    answer:
-      "NEXUS cam kết phản hồi yêu cầu ban đầu trong vòng 24 giờ làm việc và gợi ý 1–3 CLB phù hợp cùng bảng báo giá tham khảo.",
+      "NEXUS phản hồi trong vòng 24 giờ làm việc kèm đề xuất phương án và mức chi phí tham khảo phù hợp ngân sách.",
   },
 ];

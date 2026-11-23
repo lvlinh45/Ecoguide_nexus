@@ -38,13 +38,11 @@ import type { NexusServiceItem, NexusTrackedRequest } from "@/types/nexus";
 interface ServiceOrderDialogProps {
   service: NexusServiceItem | null;
   onClose: () => void;
-  onSubmitted?: (created: NexusTrackedRequest, contact: string) => void;
 }
 
 export function ServiceOrderDialog({
   service,
   onClose,
-  onSubmitted,
 }: ServiceOrderDialogProps) {
   const [selectedServiceId, setSelectedServiceId] = useState<string>(
     service?.id || NEXUS_SERVICE_CATALOG[0].id,
@@ -133,7 +131,6 @@ export function ServiceOrderDialog({
       });
 
       setCreatedRequest(created);
-      onSubmitted?.(created, email.trim());
     } catch (err: unknown) {
       setErrorMsg(
         err instanceof Error
@@ -285,7 +282,7 @@ export function ServiceOrderDialog({
                   <div className="rounded-xl border border-emerald-200 bg-white p-3.5 flex flex-wrap items-center justify-between gap-2">
                     <div>
                       <div className="text-[11px] uppercase tracking-wider text-muted-foreground">
-                        Mã yêu cầu theo dõi & đánh giá
+                        Mã yêu cầu tham chiếu
                       </div>
                       <div className="font-mono text-lg font-extrabold text-foreground">
                         {createdRequest.requestCode}
@@ -312,19 +309,8 @@ export function ServiceOrderDialog({
                   </div>
 
                   <div className="flex flex-wrap items-center justify-end gap-2 pt-1">
-                    <Button type="button" variant="outline" onClick={onClose}>
+                    <Button type="button" onClick={onClose}>
                       Đóng cửa sổ
-                    </Button>
-                    <Button
-                      type="button"
-                      onClick={() => {
-                        onClose();
-                        document
-                          .getElementById("tracking-reviews")
-                          ?.scrollIntoView({ behavior: "smooth" });
-                      }}
-                    >
-                      Theo dõi tiến độ yêu cầu
                     </Button>
                   </div>
                 </div>

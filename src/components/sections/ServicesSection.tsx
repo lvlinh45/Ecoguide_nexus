@@ -1,7 +1,6 @@
 import { useMemo, useState } from "react";
 import { ArrowRight, Clock } from "lucide-react";
 import { ClubProjectIcon } from "@/components/shared/ClubProjectIcon";
-import { FeatureChecklist } from "@/components/shared/FeatureChecklist";
 import { SectionHeading } from "@/components/shared/SectionHeading";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -49,9 +48,9 @@ export function ServicesSection({ onSelectService }: ServicesSectionProps) {
     >
       <SectionHeading
         className="mb-5 sm:mb-6"
-        badge="Danh mục Dịch vụ của 4 CLB"
-        title="Chọn đúng nhóm dịch vụ doanh nghiệp đang cần"
-        description="Bấm vào từng dịch vụ (như Quay dựng video, Thiết kế của YTC, Biểu diễn Âm nhạc, Hướng dẫn du lịch...) để xem thông tin chi tiết và điền biểu mẫu gửi yêu cầu tới NEXUS."
+        badge="Danh mục Dịch vụ"
+        title="Chọn đúng gói dịch vụ doanh nghiệp đang cần"
+        description="Nhấn vào từng dịch vụ để xem chi tiết hạng mục bàn giao và gửi yêu cầu tới NEXUS."
       />
 
       {/* Bộ lọc nhanh theo CLB / Nhóm dịch vụ */}
@@ -106,13 +105,12 @@ export function ServicesSection({ onSelectService }: ServicesSectionProps) {
                   </div>
                 </div>
               </div>
-              <CardDescription className="pt-2 leading-relaxed">
+              <CardDescription className="pt-2 leading-relaxed line-clamp-2">
                 {service.shortDesc}
               </CardDescription>
             </CardHeader>
 
-            <CardContent className="space-y-3">
-              <FeatureChecklist items={service.deliverables.slice(0, 3)} />
+            <CardContent className="pt-0">
               <div className="flex flex-wrap items-center justify-between gap-2 rounded-xl bg-muted/50 px-3 py-2 text-xs">
                 <span className="inline-flex items-center gap-1 text-muted-foreground">
                   <Clock className="size-3.5 shrink-0 text-primary" />
