@@ -47,6 +47,7 @@ export const DEFAULT_NEXUS_CONFIG: NexusPortalConfig = {
       shortName: "YTC Media",
       category: "Truyền thông & Sáng tạo",
       url: import.meta.env.VITE_YTC_URL || "https://ytc.ecoguide.vn",
+      logoUrl: "/logo_ytc.jpg",
       tagline:
         "Chụp ảnh, quay phim, thiết kế ấn phẩm & sản xuất video ngắn",
       description:
@@ -68,9 +69,10 @@ export const DEFAULT_NEXUS_CONFIG: NexusPortalConfig = {
       shortName: "Music Club",
       category: "Nghệ thuật & Sự kiện",
       url: import.meta.env.VITE_MUSIC_URL || "https://music.ecoguide.vn",
+      logoUrl: "/logo_amnhac.jpg",
       tagline: "Biểu diễn Acoustic, ban nhạc & tiết mục nghệ thuật sự kiện",
       description:
-        "Cung cấp các chương trình biểu diễn nghệ thuật, đêm nhạc Acoustic, ban nhạc sống, tiết mục văn nghệ cho sự kiện doanh nghiệp, nhà hàng, khách sạn và khu nghỉ dưỡng.",
+        "CLB Âm Nhạc – Đại học Nha Trang là nơi hội tụ những tâm hồn yêu âm nhạc, cùng kết nối, sẻ chia và lan tỏa đam mê qua từng giai điệu. Với hoạt động du ca tối thứ Tư hằng tuần và chuỗi đêm nhạc chào đón tân sinh viên thường niên, CLB mang đến một môi trường trẻ trung, năng động và đầy cảm hứng. Không chỉ là nơi âm nhạc cất lên, đây còn là nơi lưu giữ thanh xuân và cùng nhau tạo nên những kỷ niệm đẹp.",
       priceRange: "2 – 5 triệu VNĐ / chương trình",
       accentColor: "#8b5cf6",
       badge: "Nòng cốt #3",
@@ -88,6 +90,7 @@ export const DEFAULT_NEXUS_CONFIG: NexusPortalConfig = {
       shortName: "English Club",
       category: "Ngoại ngữ & Quốc tế",
       url: import.meta.env.VITE_ENGLISH_URL || "https://english.ecoguide.vn",
+      logoUrl: "/logo_english.jpg",
       tagline:
         "Hỗ trợ giao tiếp, đón tiếp khách quốc tế & giao lưu văn hóa",
       description:
