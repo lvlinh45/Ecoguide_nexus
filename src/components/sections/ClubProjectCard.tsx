@@ -4,7 +4,6 @@ import {
   Globe,
 } from "lucide-react";
 import { ClubProjectIcon } from "@/components/shared/ClubProjectIcon";
-import { FeatureChecklist } from "@/components/shared/FeatureChecklist";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import {
@@ -22,13 +21,11 @@ import type { NexusClubProject } from "@/types/nexus";
 interface ClubProjectCardProps {
   project: NexusClubProject;
   onInspect: (project: NexusClubProject) => void;
-  onOrderClub: (project: NexusClubProject) => void;
 }
 
 export function ClubProjectCard({
   project,
   onInspect,
-  onOrderClub,
 }: ClubProjectCardProps) {
   const domainLabel = formatDisplayDomain(project.url);
 
@@ -63,13 +60,7 @@ export function ClubProjectCard({
           </CardDescription>
         </CardHeader>
 
-        <CardContent className="space-y-4">
-          <p className="text-sm text-muted-foreground leading-relaxed">
-            {project.description}
-          </p>
-
-          <FeatureChecklist items={project.highlights.slice(0, 3)} />
-
+        <CardContent className="pt-0">
           <div className="flex flex-wrap items-center justify-between gap-2 rounded-xl bg-muted/60 px-3.5 py-2.5 text-xs">
             <span className="font-mono font-semibold text-foreground flex items-center gap-1.5 min-w-0 truncate">
               <Globe className="size-3.5 shrink-0 text-primary" />
@@ -94,20 +85,11 @@ export function ClubProjectCard({
         >
           Hồ sơ năng lực
         </Button>
-        <Button
-          type="button"
-          variant="outline"
-          size="sm"
-          className="w-full sm:w-auto min-h-10 sm:min-h-8"
-          onClick={() => onOrderClub(project)}
-        >
-          Đặt dịch vụ CLB
-        </Button>
 
         <Button
           size="sm"
           asChild
-          className="col-span-2 w-full sm:col-span-1 sm:w-auto sm:ml-auto min-h-10 sm:min-h-8"
+          className="w-full sm:w-auto sm:ml-auto min-h-10 sm:min-h-8"
         >
           <a href={project.url} target="_blank" rel="noopener noreferrer">
             Cổng CLB

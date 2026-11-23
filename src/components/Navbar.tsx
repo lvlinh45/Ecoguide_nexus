@@ -9,24 +9,33 @@ interface NavbarProps {
 }
 
 const NAV_LINKS = [
-  { href: "#projects", label: "4 Dự án CLB" },
   { href: "#services", label: "Dịch vụ & Giá" },
+  { href: "#projects", label: "4 CLB" },
   { href: "#process", label: "Quy trình" },
-  { href: "#compare", label: "So sánh & Giá trị" },
-  { href: "#tracking-reviews", label: "Tra cứu & Đánh giá" },
+  { href: "#compare", label: "So sánh" },
   { href: "#faq", label: "Hỏi đáp" },
 ];
 
 export function Navbar({ brandName, onOpenOrder }: NavbarProps) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [logoFailed, setLogoFailed] = useState(false);
 
   return (
     <header className="sticky top-0 z-40 w-full border-b bg-background/90 backdrop-blur-md">
       <div className="mx-auto flex h-14 sm:h-16 max-w-6xl items-center justify-between gap-2 px-3.5 sm:px-6">
-        <a href="#top" className="flex items-center gap-2 min-w-0">
-          <div className="flex size-8 sm:size-9 shrink-0 items-center justify-center rounded-xl bg-primary text-primary-foreground shadow-xs">
-            <Sparkles className="size-4 sm:size-4.5" />
-          </div>
+        <a href="#top" className="flex items-center gap-2.5 min-w-0">
+          {!logoFailed ? (
+            <img
+              src="/logo_nexus.png"
+              alt={`${brandName} logo`}
+              onError={() => setLogoFailed(true)}
+              className="size-8 sm:size-9 shrink-0 rounded-xl object-cover border border-border/60 bg-white shadow-xs"
+            />
+          ) : (
+            <div className="flex size-8 sm:size-9 shrink-0 items-center justify-center rounded-xl bg-primary text-primary-foreground shadow-xs">
+              <Sparkles className="size-4 sm:size-4.5" />
+            </div>
+          )}
           <div className="flex items-center gap-2 min-w-0">
             <span className="text-base sm:text-lg font-extrabold tracking-tight text-foreground truncate">
               {brandName}
@@ -38,7 +47,7 @@ export function Navbar({ brandName, onOpenOrder }: NavbarProps) {
         </a>
 
         <nav className="hidden md:flex items-center gap-5 lg:gap-6 text-sm font-medium text-muted-foreground">
-          {NAV_LINKS.filter((item) => item.href !== "#compare").map((item) => (
+          {NAV_LINKS.map((item) => (
             <a
               key={item.href}
               href={item.href}

@@ -8,13 +8,13 @@ export function ProcessSection() {
     <section id="process" className="bg-muted/30 py-10 sm:py-16 scroll-mt-16 sm:scroll-mt-20">
       <div className="mx-auto max-w-6xl px-4 sm:px-6">
         <SectionHeading
-          className="mb-10"
-          badge="Quy trình triển khai chuẩn hóa"
-          title="Minh bạch qua hợp đồng ba bên & giảng viên cố vấn"
-          description="Từ lúc tiếp nhận đề bài tới khi nghiệm thu, mọi bước đều có người phụ trách, biên bản xác nhận và cam kết chỉnh sửa."
+          className="mb-8"
+          badge="Quy trình hợp tác"
+          title="4 bước triển khai gọn gàng & minh bạch"
+          description="Mọi dự án đều có đầu mối phụ trách, xác nhận phạm vi trước khi thực hiện và bàn giao đúng tiến độ."
         />
 
-        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {PROCESS_STEPS.map((item) => (
             <Card key={item.step} className="bg-card">
               <CardHeader className="pb-2">
