@@ -1,9 +1,7 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import {
-  Check,
   CheckCircle2,
   Clock,
-  Copy,
   Loader2,
   Send,
   ShieldCheck,
@@ -83,7 +81,7 @@ export function ServiceOrderDialog({
   const [errorMsg, setErrorMsg] = useState("");
   const [createdRequest, setCreatedRequest] =
     useState<NexusTrackedRequest | null>(null);
-  const [copied, setCopied] = useState(false);
+  const dialogContentRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (service) {
@@ -91,9 +89,17 @@ export function ServiceOrderDialog({
       setSpecValues({});
       setErrorMsg("");
       setCreatedRequest(null);
-      setCopied(false);
+      if (dialogContentRef.current) {
+        dialogContentRef.current.scrollTop = 0;
+      }
     }
   }, [service]);
+
+  useEffect(() => {
+    if (createdRequest) {
+      dialogContentRef.current?.scrollTo({ top: 0, behavior: "smooth" });
+    }
+  }, [createdRequest]);
 
   const activeService =
     NEXUS_SERVICE_CATALOG.find((s) => s.id === selectedServiceId) ||
@@ -164,13 +170,6 @@ export function ServiceOrderDialog({
     }
   };
 
-  const handleCopyCode = () => {
-    if (!createdRequest?.requestCode) return;
-    navigator.clipboard?.writeText(createdRequest.requestCode);
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
-  };
-
   return (
     <Dialog
       open={Boolean(service)}
@@ -179,7 +178,10 @@ export function ServiceOrderDialog({
       }}
     >
       {service && (
-        <DialogContent className="sm:max-w-4xl max-h-[92dvh] overflow-y-auto p-0">
+        <DialogContent
+          ref={dialogContentRef}
+          className="sm:max-w-4xl max-h-[92dvh] overflow-y-auto p-0"
+        >
           <div className="grid grid-cols-1 lg:grid-cols-12">
             {/* Cột trái: Thông tin chi tiết dịch vụ & CLB phụ trách */}
             <div className="lg:col-span-5 min-w-0 bg-muted/40 p-4 sm:p-6 border-b lg:border-b-0 lg:border-r space-y-4 sm:space-y-5">
@@ -294,40 +296,11 @@ export function ServiceOrderDialog({
                         Đã tiếp nhận yêu cầu thành công!
                       </h4>
                       <p className="text-emerald-800 text-xs mt-1 leading-relaxed">
-                        NEXUS đã ghi nhận yêu cầu cho dịch vụ{" "}
+                        NEXUS đã nhận thông tin yêu cầu cho dịch vụ{" "}
                         <strong>{createdRequest.serviceName}</strong> và sẽ liên
-                        hệ trao đổi với bạn trong vòng 24 giờ làm việc.
+                        hệ lại với bạn trong thời gian sớm nhất.
                       </p>
                     </div>
-                  </div>
-
-                  <div className="rounded-xl border border-emerald-200 bg-white p-3.5 flex flex-wrap items-center justify-between gap-2">
-                    <div>
-                      <div className="text-[11px] uppercase tracking-wider text-muted-foreground">
-                        Mã yêu cầu tham chiếu
-                      </div>
-                      <div className="font-mono text-lg font-extrabold text-foreground">
-                        {createdRequest.requestCode}
-                      </div>
-                    </div>
-                    <Button
-                      type="button"
-                      variant="outline"
-                      size="sm"
-                      onClick={handleCopyCode}
-                    >
-                      {copied ? (
-                        <>
-                          <Check className="size-3.5 text-emerald-600" />
-                          Đã sao chép
-                        </>
-                      ) : (
-                        <>
-                          <Copy className="size-3.5" />
-                          Sao chép mã
-                        </>
-                      )}
-                    </Button>
                   </div>
 
                   <div className="flex flex-wrap items-center justify-end gap-2 pt-1">
