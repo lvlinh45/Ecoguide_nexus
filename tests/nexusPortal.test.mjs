@@ -50,6 +50,8 @@ for (const relPath of [
   "src/components/sections/ServiceOrderDialog.tsx",
   "src/data/nexusServices.ts",
   "public/logo_nexus.png",
+  "public/robots.txt",
+  "public/sitemap.xml",
 ]) {
   assert.ok(
     fs.existsSync(path.join(nexusRoot, relPath)),
@@ -97,5 +99,22 @@ assert.equal(sanitizeSafeUrl("  JAVASCRIPT:alert(1)", "#"), "#");
 assert.equal(sanitizeSafeUrl("data:text/html,<script>alert(1)</script>", "#"), "#");
 assert.equal(sanitizeSafeUrl("vbscript:msgbox(1)", "#"), "#");
 assert.equal(sanitizeSafeUrl("//evil.example/phish", "#"), "#");
+
+// 6. Verify SEO / Open Graph / Twitter meta tags in index.html
+const indexHtml = fs.readFileSync(path.join(nexusRoot, "index.html"), "utf8");
+for (const tag of [
+  'name="description"',
+  'name="keywords"',
+  'name="robots"',
+  'rel="canonical"',
+  'property="og:title"',
+  'property="og:description"',
+  'property="og:image"',
+  'name="twitter:card"',
+  'name="twitter:title"',
+  'name="twitter:description"',
+]) {
+  assert.ok(indexHtml.includes(tag), `Missing SEO meta tag in index.html: ${tag}`);
+}
 
 console.log("✅ All Ecoguide_nexus structural, config & URL sanitization tests passed!");
