@@ -19,3 +19,23 @@ export function sanitizeSafeUrl(rawUrl: unknown, fallback = "#"): string {
   }
   return fallback;
 }
+
+/**
+ * Normalize API base URL and automatically upgrade insecure http:// endpoints to https://
+ * when the portal itself is loaded over HTTPS (prevents Mixed Content blocks).
+ */
+export function normalizeApiBaseUrl(
+  rawUrl?: string,
+  pageProtocol = typeof window !== "undefined" ? window.location?.protocol : "",
+): string {
+  const trimmed = rawUrl?.trim().replace(/\/+$/, "") || "";
+  if (!trimmed) return "";
+  if (
+    pageProtocol === "https:" &&
+    /^http:\/\//i.test(trimmed) &&
+    !/^http:\/\/(localhost|127\.0\.0\.1)(:|\/|$)/i.test(trimmed)
+  ) {
+    return trimmed.replace(/^http:\/\//i, "https://");
+  }
+  return trimmed;
+}
